@@ -77,11 +77,12 @@ const Budget = (props) => {
               e.preventDefault();
               let obj = {};
               obj['amount'] = e.target.amount.value;
-              obj['message'] = e.target.message.value;
+              obj['message'] = e.target.title.value;
               obj['date'] = e.target.date.value;
               obj['time'] = e.target.time.value;
               obj['cityState'] = e.target.cityState.value;
               obj['tag'] = e.target.tag.value;
+              obj['sign'] = e.target.optionsOutlined.value;
               props.updateBal(e.target.optionsOutlined.value, Number(e.target.amount.value));
               props.updateEntries([...props.entries, obj]);
             }}>
@@ -104,8 +105,8 @@ const Budget = (props) => {
                       <input type="number" className="form-control" id="amount"></input>
                     </div>
                     <div className="mb-3">
-                      <label htmlFor="message" name='message' className="col-form-label">Message:</label>
-                      <textarea className="form-control" id="message"></textarea>
+                      <label htmlFor="title" name='title' className="col-form-label">Title:</label>
+                      <input className="form-control" id="title"></input>
                     </div>
                     <div className="mb-3">
                       <label htmlFor="date" name='date' className="col-form-label">Date:</label>

@@ -47,7 +47,12 @@ a {
 }
 
 /* TRANSACTIONS */
-#transactions-goals {
+#transactions {
+  background-color: rgb(62, 62, 62);
+}
+
+/* goals */
+#goals {
   background-color: rgb(62, 62, 62);
 }
 
@@ -55,6 +60,8 @@ a {
 #footer {
   color: rgb(87, 86, 86);
   margin-left: 40%;
+  margin-top: 4%;
+  margin-bottom: 4%;
 }
 .footer-icons {
   margin: 20px 10px 20px 10px;
@@ -90,5 +97,165 @@ input:focus {
 }
 
 .transaction-container {
-  margin-top: 70px;
+  /* margin-top: 70px; */
+  margin-bottom: 25%;
+}
+
+.EContainer {
+  width: 100%;
+  max-width: 100%;
+  /* max-height: 950px; */
+  max-height: 473px;
+  overflow-y:scroll;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+.EContainer:hover {
+  overflow-y:auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+.EContainer::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  background-color: rgb(241, 239, 239, 50%);
+}
+.EContainer::-webkit-scrollbar-thumb {
+  background: rgb(212, 211, 211, 50%);
+}
+.EntryContainer {
+  /* display:flex;
+  margin-right: 63%;
+  width: 100%;
+  height: 70px; */
+  /* font-size: larger; */
+  display:flex;
+  margin-right: 63%;
+  width: 100%;
+  height: auto;
+}
+
+
+
+
+/* FEC bits */
+.toggled{
+  margin-bottom: 3%;
+  border:0;
+  padding: 1% 2%;
+  background-color: rgba(255, 255, 255, 60%);
+  font-size: 18px;
+  border-top: 2px solid gray;
+}
+.toggled:hover {
+  background-color: rgba(212, 212, 212, 0.6);
+  color: black;
+}
+.transToToggle{
+  margin-bottom: 3%;
+  padding: 1% 2%;
+  border: 0;
+  border-top-left-radius: 5px;
+  background-color: black;
+  color: white;
+  box-shadow: inset -7px 0 9px -7px rgba(0,0,0,0.3), inset 0 -7px 9px -7px rgba(0,0,0,0.3);
+}
+.transToToggle:hover {
+  background-color: rgb(37, 37, 37);
+  color: white;
+  box-shadow: inset -7px 0 9px -7px rgba(0,0,0,0.3), inset 0 -7px 9px -7px rgba(0,0,0,0.3);
+}
+.goalsToToggle{
+  margin-bottom: 3%;
+  padding: 1% 2%;
+  border: 0;
+  border-top-right-radius: 5px;
+  background-color: black;
+  color: white;
+  box-shadow: inset 7px 0 9px -7px rgba(0,0,0,0.3), inset 0 -7px 9px -7px rgba(0,0,0,0.3);
+}
+.goalsToToggle:hover {
+  background-color: rgb(37, 37, 37);
+  color: white;
+  box-shadow: inset 7px 0 9px -7px rgba(0,0,0,0.3), inset 0 -7px 9px -7px rgba(0,0,0,0.3);
+}
+.contain-trans-goals{
+  display: table;
+  /* margin: auto; */
+  width: 100%;
+  /* padding: 2%; */
+}
+.toggle-btns {
+  background-color: rgb(62, 62, 62);
+}
+
+#transContainer {
+  scroll-behavior: smooth;
+}
+
+.goals {
+  display: none;
+  width: 100%;
+  margin-top: -1%;
+}
+
+
+/* search button ----- */
+.search-form {
+  /* background-color: rgba(237, 237, 237, 0.6); */
+  margin-top: 3%;
+  width: 100%;
+  height: 44px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.search-input {
+  all: unset;
+  font: 16px system-ui;
+  color: rgb(0, 0, 0);
+  height: 100%;
+  padding: 6px 20px;
+  width: 100%;
+  background-color: rgb(206, 206, 206);;
+}
+.search-input::placeholder{
+  color: rgb(82, 82, 82);
+}
+.search-button {
+  all: unset;
+  cursor: pointer;
+  width: 44px;
+  height: 56px;
+  margin-bottom: 0px;
+  background-color: rgb(206, 206, 206);
+}
+.search-svg {
+  color: #9C9C9C;
+  fill: currentColor;
+  width: 24px;
+  height: 24px;
+}
+
+
+.T-right{
+  font-size: 14px;
+  margin-top: .25%;
+  width: 15%;
+}
+.user_info {
+  margin-top: 0.2%;
+  /* margin-left: 0.5%; */
+  opacity: 0.5;
+  color: #d8d7d7;
+  /* font-weight: lighter; */
+  font-size: 13px;
+}
+
+
+/* LOGIN CSS ---------- */
+.gradient-custom {
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
 }

@@ -1,13 +1,29 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import './App.css';
+import Login from './Login.jsx';
 import Nav from './Nav.jsx';
 import Budget from './Budget.jsx';
-import TransactionsGoals from './TransactionsGoals.jsx';
+import Transactions from './Transactions.jsx';
+import Goals from './Goals.jsx';
+
 
 const App = (props) => {
   const [balance, setBalance] = useState(0);
-  const [entries, setEntries] = useState([{amount: '200'}]);
+  const [entries, setEntries] = useState([{amount: '200', title: 'BestBuy', date: '11/17/22', time: '12:30', tag: 'food', sign: '+'},{amount: '200', title: 'BestBuy', date: '11/17/22', time: '12:30', tag: 'food', sign: '+'},{amount: '200', title: 'BestBuy', date: '11/17/22', time: '12:30', tag: 'food', sign: '+'},{amount: '200', title: 'BestBuy', date: '11/17/22', time: '12:30', tag: 'food', sign: '+'},{amount: '200', title: 'BestBuy', date: '11/17/22', time: '12:30', tag: 'food', sign: '+'}]);
+
+  // FEC ---
+  const [toggleTG, setToggleTG] = useState(false);
+  const toggledTG = () => {
+    if(!toggleTG){
+      document.querySelector('.transactions').style.display = 'none'
+      document.querySelector('.goals').style.display = 'block'
+    } else {
+      document.querySelector('.goals').style.display = 'none'
+      document.querySelector('.transactions').style.display = 'block'
+    }
+    document.querySelector('.toggled').style.transition = 'font 0.3s ease'
+  }
 
 
   const updateBal = (operator, input) => {
@@ -28,19 +44,52 @@ const App = (props) => {
 
   return (
     <div>
-      <Nav />
-      <Budget balance={balance} setBalance={setBalance} updateBal={updateBal} entries={entries} updateEntries={updateEntries}/>
-      <TransactionsGoals entries={entries} />
+      {/* LOGIN PAGE --------------- */}
+      <div>
+        <Login />
+      </div>
 
-      <footer className="" id="footer">
-        <div className="container-fluid">
-          <i className="footer-icons fa-brands fa-twitter"></i>
-          <i className="footer-icons fa-brands fa-facebook-f"></i>
-          <i className="footer-icons fa-brands fa-instagram"></i>
-          <i className="footer-icons fa-solid fa-envelope"></i>
-          <p>© Copyright MyBudget</p>
+      {/* HOME PAGE ---------------- */}
+      <div>
+        <Nav />
+        <Budget balance={balance} setBalance={setBalance} updateBal={updateBal} entries={entries} updateEntries={updateEntries}/>
+
+        {/* toggles transactions and goals */}
+        <div className="toggle-btns">
+          <button className={!toggleTG ? "toggled btn" : "transToToggle btn"} onClick={(e) => {
+            if (toggleTG) {
+              setToggleTG(!toggleTG);
+              toggledTG();
+            }}}>
+              Transactions
+          </button>
+          <button className={toggleTG ? "toggled btn" : "goalsToToggle btn"} onClick={(e) => {
+            if (!toggleTG) {
+              setToggleTG(!toggleTG);
+              toggledTG();
+            }}}>
+              Goals
+          </button>
         </div>
-      </footer>
+
+        <div className="contain-trans-goals">
+          {/* transactions */}
+          <Transactions entries={entries} />
+
+          {/* goals */}
+          <Goals entries={entries} />
+        </div>
+
+        <footer className="" id="footer">
+          <div className="container-fluid">
+            <i className="footer-icons fa-brands fa-twitter"></i>
+            <i className="footer-icons fa-brands fa-facebook-f"></i>
+            <i className="footer-icons fa-brands fa-instagram"></i>
+            <i className="footer-icons fa-solid fa-envelope"></i>
+            <p>© Copyright MyBudget</p>
+          </div>
+        </footer>
+      </div>
     </div>
   );
 }
