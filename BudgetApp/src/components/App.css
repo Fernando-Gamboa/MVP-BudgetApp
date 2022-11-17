@@ -1,0 +1,94 @@
+body {
+ font-family: 'Roboto', sans-serif;
+ font-weight: bold;
+ color: white;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.container-fluid {
+  padding: 2% 10% 2% 10%;
+}
+
+/* WALLET ICON NAV */
+.navIcon {
+  height: 5vmin;
+  pointer-events: none;
+  margin-right: 5px;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .navIcon {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+/* BUDGET */
+#budget {
+  background-color: #363c47;
+  /* background-color: #34373b; */
+}
+#nav {
+  background-color: #363c47;
+  /* background-color: #34373b;/ */
+
+}
+
+/* TRANSACTIONS */
+#transactions-goals {
+  background-color: rgb(62, 62, 62);
+}
+
+/* FOOTER- */
+#footer {
+  color: rgb(87, 86, 86);
+  margin-left: 40%;
+}
+.footer-icons {
+  margin: 20px 10px 20px 10px;
+}
+
+input {
+  width: 50%;
+  padding: 15px;
+  margin: 5px 15px 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+input:focus {
+  background-color:  #ddd;
+}
+
+.modal {
+  color: rgb(86, 85, 85);
+}
+
+.download-button {
+  margin-top: 150px;
+  margin-bottom: 90px;
+  margin-right: 15px;
+}
+
+.btn-outline-success {
+  margin-right: 20px;
+}
+
+.budget-container {
+  margin-top: 70px;
+}
+
+.transaction-container {
+  margin-top: 70px;
+}
