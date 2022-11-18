@@ -4,7 +4,6 @@ import { Doughnut } from 'react-chartjs-2';
 
 const Budget = (props) => {
 
-
   ChartJS.register(ArcElement, Tooltip, Legend);
   const data = {
     labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -77,7 +76,7 @@ const Budget = (props) => {
               e.preventDefault();
               let obj = {};
               obj['amount'] = e.target.amount.value;
-              obj['message'] = e.target.title.value;
+              obj['title'] = e.target.title.value;
               obj['date'] = e.target.date.value;
               obj['time'] = e.target.time.value;
               obj['cityState'] = e.target.cityState.value;
@@ -122,7 +121,19 @@ const Budget = (props) => {
                     </div>
                     <div className="mb-3">
                       <label htmlFor="tag" name='tag' className="col-form-label">Tag:</label>
-                      <input type="tag" className="form-control" id="tag"></input>
+                      {/* <input type="tag" className="form-control" id="tag"></input> */}
+                      {/* drop down ------- */}
+                      <select className="form-select" aria-label="Default select example" defaultValue="default" name="tag">
+                        <option disabled value="default">Select Tag</option>
+                        <option value="Food">Food</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Shopping">Shopping</option>
+                        <option value="Travel">Travel</option>
+                        <option value="Transportation">Transportation</option>
+                        <option value="Services">Services</option>
+                        <option value="Other">Other</option>
+                      </select>
+
                     </div>
                   </div>
                   <div className="modal-footer">

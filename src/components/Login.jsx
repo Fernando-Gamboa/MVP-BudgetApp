@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 
 const Login = (props) => {
+  const navigate = useNavigate();
 
   return (
     <section className="vh-100 gradient-custom" id='login'>
@@ -10,8 +13,10 @@ const Login = (props) => {
             <div className="card bg-dark text-white" style={{borderRadius: "1rem"}}>
               <div className="card-body p-5 text-center">
 
-                <div className="mb-md-5 mt-md-4 pb-5">
-
+                <form className="mb-md-5 mt-md-4 pb-5" onSubmit={(e) => {
+                  e.preventDefault();
+                  navigate('/home')
+                }}>
                   <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
                   <p className="text-white-50 mb-5">Please enter your login and password!</p>
 
@@ -35,7 +40,7 @@ const Login = (props) => {
                     <a href="#!" className="text-white"><i className="fab fa-google fa-lg"></i></a>
                   </div>
 
-                </div>
+                </form>
 
                 <div>
                   <p className="mb-0">Don't have an account? <a href="#!" className="text-white-50 fw-bold">Sign Up</a>

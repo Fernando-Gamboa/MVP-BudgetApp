@@ -7,6 +7,7 @@ const Transactions = (props) => {
   return (
     <section className='transactions' id='transactions'>
       <div className='container-fluid'>
+
         <h1>Transactions</h1>
         <div>
           {/* search bar ----------- */}
@@ -21,7 +22,6 @@ const Transactions = (props) => {
           </div>
           <hr></hr>
         </div>
-
 
       </div>
     </section>

@@ -1,30 +1,28 @@
 import React from 'react';
 import GoalsEntry from './GoalsEntry.jsx';
+import SetGoal from './SetGoal.jsx';
 
 const Goals = (props) => {
 
   return (
     <section className='goals' id='goals'>
       <div className='container-fluid'>
-        <div className="row">
 
-          {/* <!-- Goals --> */}
-          <div className="transaction-container">
-            <h1>Goals</h1>
-            <div className='EContainer'>
-              {props.entries.map((entry, index) => (
-                <GoalsEntry entry={entry} key={index} />
-              ))}
-            </div>
+        <h1>Goals</h1>
+        {/* <!-- Goals --> */}
+        <div className="transaction-container">
+          <div className='EContainer'>
+            {props.goals.map((goal, index) => (
+              <GoalsEntry goal={goal} entries={props.entries} key={index} />
+            ))}
           </div>
-
-
-          {/* GOALS */}
-          {/* <div className="col-lg-6 col-md-12 col-sm-12 transaction-container">
-            <h1>Goals</h1>
-          </div> */}
-
+          <hr></hr>
+          {/* goals button ----------- */}
+          <div>
+            <SetGoal goals={props.goals} updateGoals={props.updateGoals} />
+          </div>
         </div>
+
       </div>
     </section>
   )

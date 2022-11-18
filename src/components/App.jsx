@@ -1,7 +1,7 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 import './App.css';
-import Login from './Login.jsx';
+// import Login from './Login.jsx';
 import Nav from './Nav.jsx';
 import Budget from './Budget.jsx';
 import Transactions from './Transactions.jsx';
@@ -11,6 +11,7 @@ import Goals from './Goals.jsx';
 const App = (props) => {
   const [balance, setBalance] = useState(0);
   const [entries, setEntries] = useState([{amount: '200', title: 'BestBuy', date: '11/17/22', time: '12:30', tag: 'food', sign: '+'},{amount: '200', title: 'BestBuy', date: '11/17/22', time: '12:30', tag: 'food', sign: '+'},{amount: '200', title: 'BestBuy', date: '11/17/22', time: '12:30', tag: 'food', sign: '+'},{amount: '200', title: 'BestBuy', date: '11/17/22', time: '12:30', tag: 'food', sign: '+'},{amount: '200', title: 'BestBuy', date: '11/17/22', time: '12:30', tag: 'food', sign: '+'}]);
+  const [goals, setGoals] = useState([{save: '200', date: '11/17/22'},{save: '200', date: '11/17/22'},{save: '200', date: '11/17/22'},{save: '200', date: '11/17/22'},{save: '200', date: '11/17/22'}]);
 
   // FEC ---
   const [toggleTG, setToggleTG] = useState(false);
@@ -37,6 +38,9 @@ const App = (props) => {
   const updateEntries = (array) => {
     setEntries(array);
   }
+  const updateGoals = (array) => {
+    setGoals(array);
+  }
 
   useEffect(() => {
     console.log(entries)
@@ -45,9 +49,9 @@ const App = (props) => {
   return (
     <div>
       {/* LOGIN PAGE --------------- */}
-      <div>
+      {/* <div>
         <Login />
-      </div>
+      </div> */}
 
       {/* HOME PAGE ---------------- */}
       <div>
@@ -77,7 +81,7 @@ const App = (props) => {
           <Transactions entries={entries} />
 
           {/* goals */}
-          <Goals entries={entries} />
+          <Goals goals={goals} updateGoals={updateGoals} entries={entries}/>
         </div>
 
         <footer className="" id="footer">

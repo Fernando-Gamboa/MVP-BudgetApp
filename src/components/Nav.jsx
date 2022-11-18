@@ -1,8 +1,10 @@
 import React from 'react';
 import logoNav from './logoNav.svg';
-
+import { useNavigate } from 'react-router-dom';
 
 const Nav = (props) => {
+  const navigate = useNavigate();
+
   return (
     <section id='nav'>
       <div className='container-fluid'>
@@ -24,6 +26,11 @@ const Nav = (props) => {
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#goals">Goals</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#logout" onClick={(e) => {
+                  navigate('/')
+                }}>Log out</a>
               </li>
             </ul>
           </div>

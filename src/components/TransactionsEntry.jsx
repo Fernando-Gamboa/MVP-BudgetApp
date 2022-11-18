@@ -6,8 +6,6 @@ const TransactionsEntry = (props) => {
   return (
     <>
       <div className='EntryContainer'>
-        {/* {`${props.entry.title} | ${props.entry.date}| ${props.entry.time} | ${props.entry.amount}`} */}
-
         <span className='T-right'>
           {`${props.entry.title}`}
         </span>
