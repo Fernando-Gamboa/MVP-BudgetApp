@@ -10,8 +10,8 @@ import Goals from './Goals.jsx';
 
 const App = (props) => {
   const [balance, setBalance] = useState(0);
-  const [entries, setEntries] = useState([{amount: '200', title: 'BestBuy', date: '11/17/22', time: '12:30', tag: 'food', sign: '+'},{amount: '200', title: 'BestBuy', date: '11/17/22', time: '12:30', tag: 'food', sign: '+'},{amount: '200', title: 'BestBuy', date: '11/17/22', time: '12:30', tag: 'food', sign: '+'},{amount: '200', title: 'BestBuy', date: '11/17/22', time: '12:30', tag: 'food', sign: '+'},{amount: '200', title: 'BestBuy', date: '11/17/22', time: '12:30', tag: 'food', sign: '+'}]);
-  const [goals, setGoals] = useState([{save: '200', date: '11/17/22'},{save: '200', date: '11/17/22'},{save: '200', date: '11/17/22'},{save: '200', date: '11/17/22'},{save: '200', date: '11/17/22'}]);
+  const [entries, setEntries] = useState([{amount: '200', title: 'BestBuy', date: '11/16/22', time: '12:30', tag: 'food', sign: '+'},{amount: '200', title: 'BestBuy', date: '11/19/22', time: '12:30', tag: 'food', sign: '+'},{amount: '200', title: 'BestBuy', date: '11/1/22', time: '12:30', tag: 'food', sign: '+'},{amount: '200', title: 'BestBuy', date: '11/15/22', time: '12:30', tag: 'food', sign: '+'},{amount: '200', title: 'BestBuy', date: '11/17/22', time: '12:30', tag: 'food', sign: '+'}]);
+  const [goals, setGoals] = useState([{save: '200', Sdate: '11/20/22', date: '11/20/22'},{save: '200', Sdate: '11/20/22', date: '11/1/22'},{save: '200', Sdate: '11/2/22', date: '11/18/22'},{save: '200', Sdate: '11/17/22', date: '11/20/22'},{save: '200', Sdate: '11/2/22', date: '11/12/22'}]);
 
   // FEC ---
   const [toggleTG, setToggleTG] = useState(false);
@@ -44,7 +44,7 @@ const App = (props) => {
 
   useEffect(() => {
     console.log(entries)
-  }, [balance, entries]);
+  }, [balance, entries, goals]);
 
   return (
     <div>
