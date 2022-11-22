@@ -32,6 +32,29 @@ const Budget = (props) => {
     ],
   };
 
+  // adds AM and PM to time
+  function onTimeChange(value) {
+    let timeSplit = value.split(':'),
+      hours,
+      minutes,
+      meridian;
+    hours = timeSplit[0];
+    minutes = timeSplit[1];
+    if (hours > 12) {
+      meridian = 'PM';
+      hours -= 12;
+    } else if (hours < 12) {
+      meridian = 'AM';
+      if (hours == 0) {
+        hours = 12;
+      }
+    } else {
+      meridian = 'PM';
+    }
+    value = hours + ':' + minutes + ' ' + meridian;
+    return value;
+  }
+
   return (
     <section id='budget'>
       <div className='container-fluid'>
@@ -78,12 +101,12 @@ const Budget = (props) => {
               obj['amount'] = e.target.amount.value;
               obj['title'] = e.target.title.value;
               obj['date'] = e.target.date.value;
-              obj['time'] = e.target.time.value;
+              obj['time'] = onTimeChange(e.target.time.value);
               obj['cityState'] = e.target.cityState.value;
               obj['tag'] = e.target.tag.value;
               obj['sign'] = e.target.optionsOutlined.value;
               props.updateBal(e.target.optionsOutlined.value, Number(e.target.amount.value));
-              props.updateEntries([...props.entries, obj]);
+              props.updateEntries([...props.filter, obj]);
             }}>
               <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">

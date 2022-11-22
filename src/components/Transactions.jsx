@@ -11,12 +11,12 @@ const Transactions = (props) => {
         <h1>Transactions</h1>
         <div>
           {/* search bar ----------- */}
-          <SearchTrans />
+          <SearchTrans searchFilter={props.searchFilter} />
         </div>
         {/* <!-- Transactions --> */}
         <div className="transaction-container">
           <div id='transContainer' className='EContainer'>
-            {props.entries.map((entry, index) => (
+            {props.filter.map((entry, index) => (
               <TransactionsEntry entry={entry} key={index} />
             ))}
           </div>

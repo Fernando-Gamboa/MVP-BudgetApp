@@ -5,7 +5,7 @@ const SearchTrans = (props) => (
   // search button is created using svg
   <div>
     <form className ='search-form'>
-      <input type='text' className ='search-input' placeholder='Search for transactions…' onChange={(e) => console.log(e.target.value)} >
+      <input type='text' className ='search-input' placeholder='Search for transactions…' onChange={(e) => props.searchFilter(e.target.value)} >
       </input>
       {/* button rendering */}
       <button type='submit' className='search-button'>

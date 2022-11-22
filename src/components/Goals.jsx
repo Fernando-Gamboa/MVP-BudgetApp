@@ -13,7 +13,7 @@ const Goals = (props) => {
         <div className="transaction-container">
           <div className='EContainer'>
             {props.goals.map((goal, index) => (
-              <GoalsEntry goal={goal} entries={props.entries} key={index} />
+              <GoalsEntry goal={goal} filter={props.filter} key={index} />
             ))}
           </div>
           <hr></hr>

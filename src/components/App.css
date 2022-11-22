@@ -62,11 +62,14 @@ a {
 #footer {
   color: rgb(87, 86, 86);
   margin-left: 40%;
-  margin-top: 4%;
-  margin-bottom: 4%;
+  padding-top: 4%;
+  padding-bottom: 4%;
 }
 .footer-icons {
   margin: 20px 10px 20px 10px;
+}
+.footer {
+  background-color: black;
 }
 
 input {
