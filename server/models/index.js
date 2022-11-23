@@ -1,1 +1,1 @@
-exports.products = require('./requests.js');
+exports.requests = require('./requests.js');

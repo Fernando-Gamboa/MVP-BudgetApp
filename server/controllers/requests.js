@@ -1,19 +1,45 @@
-const {getProducts, getProduct, getStyles, getRelated} = require('../models/products.js')
+const {getProducts, getProduct, getStyles, getRelated} = require('../models/requests.js')
 const db = require('../database/db.js');
 
 
-const getAllP = (req, res) => {
-  console.log(req.query.count)
-  // declare a page and count
-  let page = req.query.page || 1;
-  let count = req.query.count || 5;
+const getBal = (req, res) => {
+  console.log(req)
   // set a count LIMIT and an OFFSET for pagination
-  let query = `SELECT * FROM products LIMIT ${count} OFFSET ${count * page - count}`;
+  let query = `SELECT balance FROM login WHERE id = 2`;
   db.query(query, [], (err, response) => {
     if (err) {
-      console.log(err, 'Select proper count/page number (>= 1)');
+      console.log(err);
     } else {
-      console.log(response.rows, 'THIS IS getALLP ---');
+      console.log(response.rows[0].balance, 'THIS IS getBal ---');
+      res.status(200).json(response.rows[0].balance);
+    }
+  })
+}
+
+const updateBal = (req, res) => {
+  console.log(req)
+  // set a count LIMIT and an OFFSET for pagination
+  // you need to first set one login row to then later update the balance
+  let query = `UPDATE login SET balance = ${req.body.balance} WHERE id = 2`;
+  db.query(query, [], (err, response) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(response.rows, 'THIS IS updateBal ---');
+      res.status(200).json('Balance is updated');
+    }
+  })
+}
+
+const getTrans = (req, res) => {
+  console.log(req)
+  // set a count LIMIT and an OFFSET for pagination
+  let query = `SELECT * FROM transactions`;
+  db.query(query, [], (err, response) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(response.rows, 'THIS IS getTrans ---');
       res.status(200).json(response.rows);
     }
   })
@@ -26,31 +52,17 @@ const getAllP = (req, res) => {
   //   .catch(e => console.log('products getAll error', e.response.data))
 }
 
-const getOne = (req, res) => {
+const addTrans = (req, res) => {
 
-  console.log(req.params.id);
+  console.log(req.body, 'hi---');
 
-  let query = `SELECT row_to_json(p)
-  from (
-    SELECT id, name, slogan, description, category, default_price,
-      (
-        SELECT array_to_json(array_agg(row_to_json(f)))
-        from (
-          SELECT feature, value
-          FROM features
-          WHERE product_id = products.id
-        ) f
-      ) as features
-    FROM products
-    WHERE id = ${req.params.id}
-  ) p
-  `;
+  let query = `INSERT INTO transactions (amount, title, date, time, tag, sign) VALUES ('${req.body.amount}', '${req.body.title}', '${req.body.date}', '${req.body.time}', '${req.body.tag}', '${req.body.sign}')`;
   db.query(query, [], (err, response) => {
     if (err) {
       console.log(err);
     } else {
-      console.log(response.rows[0].row_to_json, 'THIS IS getOne ---');
-      res.status(200).json(response.rows[0].row_to_json);
+      console.log(response, 'THIS IS addTrans ---');
+      res.status(200).json('Transaction created');
     }
   })
 
@@ -65,6 +77,55 @@ const getOne = (req, res) => {
   //   .catch(e => console.log('products getOne error', e.response.data))
 }
 
+const getGoals = (req, res) => {
+  console.log(req)
+  // set a count LIMIT and an OFFSET for pagination
+  let query = `SELECT * FROM goals`;
+  db.query(query, [], (err, response) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(response.rows, 'THIS IS getGoals ---');
+      res.status(200).json(response.rows);
+    }
+  })
 
-module.exports.getAllP = getAllP;
-module.exports.getOne = getOne;
+  // MODELS SECTION ---
+  // getProducts(page, count)
+  //   .then(result => {
+  //     res.status(200).send(result.data);
+  //   })
+  //   .catch(e => console.log('products getAll error', e.response.data))
+}
+
+const addGoals = (req, res) => {
+
+  console.log(req.body, 'hi---');
+
+  let query = `INSERT INTO goals (save, sdate, date) VALUES ('${req.body.save}', '${req.body.sdate}', '${req.body.date}')`;
+  db.query(query, [], (err, response) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(response, 'THIS IS addGoals ---');
+      res.status(200).json('Goal created');
+    }
+  })
+
+
+  // MODELS SECTION ---
+  // let id = req.params.id || {id: '40344'};
+  // console.log('get one', req.params);
+  // getProduct(id)
+  //   .then(result => {
+  //     res.status(200).send(result.data);
+  //   })
+  //   .catch(e => console.log('products getOne error', e.response.data))
+}
+
+  module.exports.getBal = getBal;
+  module.exports.updateBal = updateBal;
+  module.exports.getTrans = getTrans;
+  module.exports.addTrans = addTrans;
+  module.exports.getGoals = getGoals;
+  module.exports.addGoals = addGoals;

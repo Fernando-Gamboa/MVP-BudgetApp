@@ -45,7 +45,7 @@ const Budget = (props) => {
       hours -= 12;
     } else if (hours < 12) {
       meridian = 'AM';
-      if (hours == 0) {
+      if (hours === 0) {
         hours = 12;
       }
     } else {
@@ -70,7 +70,7 @@ const Budget = (props) => {
             {/* <!-- Modal --> */}
             <form className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" onSubmit={(e) => {
               e.preventDefault();
-              props.setBalance(e.target.balance.value);
+              props.setBal(e.target.balance.value);
             }}>
               <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
@@ -106,7 +106,14 @@ const Budget = (props) => {
               obj['tag'] = e.target.tag.value;
               obj['sign'] = e.target.optionsOutlined.value;
               props.updateBal(e.target.optionsOutlined.value, Number(e.target.amount.value));
-              props.updateEntries([...props.filter, obj]);
+              props.addTrans(obj);
+              e.target.amount.value = '';
+              e.target.title.value = '';
+              e.target.date.value = '';
+              e.target.time.value = '';
+              e.target.cityState.value = '';
+              e.target.tag.value = '';
+              e.target.optionsOutlined.value = '';
             }}>
               <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">

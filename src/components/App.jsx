@@ -6,15 +6,16 @@ import Nav from './Nav.jsx';
 import Budget from './Budget.jsx';
 import Transactions from './Transactions.jsx';
 import Goals from './Goals.jsx';
+import axios from 'axios';
 
 
 const App = (props) => {
   const [balance, setBalance] = useState(0);
-  const [entries, setEntries] = useState([{amount: '200', title: 'BestBuy', date: '2022-11-16', time: '12:30 PM', tag: 'food', sign: '+'},{amount: '200', title: 'BestBuy', date: '2022-11-19', time: '12:30 PM', tag: 'food', sign: '+'},{amount: '200', title: 'BestBuy', date: '2022-11-12', time: '12:30 PM', tag: 'food', sign: '+'},{amount: '200', title: 'BestBuy', date: '2022-11-15', time: '12:30 PM', tag: 'food', sign: '+'},{amount: '200', title: 'BestBuy', date: '2022-11-17', time: '12:30 PM', tag: 'food', sign: '+'}]);
-  const [goals, setGoals] = useState([{save: '200', Sdate: '11/20/22', date: '11/20/22'},{save: '200', Sdate: '11/20/22', date: '11/1/22'},{save: '200', Sdate: '11/2/22', date: '11/18/22'},{save: '200', Sdate: '11/17/22', date: '11/20/22'},{save: '200', Sdate: '11/2/22', date: '11/12/22'}]);
+  const [entries, setEntries] = useState([]);
   const [filter, setFilter] = useState(entries);
+  const [goals, setGoals] = useState([]);
 
-  // FEC ---
+  // Toggle between transactions and goals buttons -----
   const [toggleTG, setToggleTG] = useState(false);
   const toggledTG = () => {
     if(!toggleTG){
@@ -27,24 +28,103 @@ const App = (props) => {
     document.querySelector('.toggled').style.transition = 'font 0.3s ease'
   }
 
-
+  // get my balance -----
+  const getBal = () => {
+    axios.get('http://localhost:3005/budget/login')
+    .then(result => {
+      setBalance(result.data);
+    })
+    .catch(err => console.log(err))
+  }
+  // set my balance -----
+  const setBal = (input) => {
+    axios.put('http://localhost:3005/budget/login', {
+      username: 'Fernando',
+      password: ' ',
+      balance: input
+    })
+    .then(result => {
+      getBal();
+    })
+    .catch(err => console.log(err))
+  }
+  // update my balance -----
   const updateBal = (operator, input) => {
     if (operator === '-') {
-      setBalance(balance - input);
+      axios.put('http://localhost:3005/budget/login', {
+        username: 'Fernando',
+        password: ' ',
+        balance: balance - input
+      })
+      .then(result => {
+        getBal();
+      })
+      .catch(err => console.log(err))
+      // setBalance(balance - input);
     } else {
-      setBalance(balance + input);
+      axios.put('http://localhost:3005/budget/login', {
+        username: 'Fernando',
+        password: ' ',
+        balance: balance + input
+      })
+      .then(result => {
+        getBal();
+      })
+      .catch(err => console.log(err))
+      // setBalance(balance + input);
     }
   }
-
-  const updateEntries = (array) => {
-    setEntries(array);
-    setFilter(array);
+  // get all transactions -----
+  const getTrans = () => {
+    axios.get('http://localhost:3005/budget/trans')
+      .then(result => {
+        setEntries(result.data);
+        setFilter(result.data);
+      })
+      .catch(err => console.log(err))
   }
-  const updateGoals = (array) => {
-    setGoals(array);
+  // get all goals -----
+  const getGoals = () => {
+    axios.get('http://localhost:3005/budget/goals')
+    .then(result => {
+      setGoals(result.data);
+    })
+    .catch(err => console.log(err))
+  }
+  // post new transactions -----
+  const addTrans = (obj) => {
+    axios.post('http://localhost:3005/budget/trans', {
+      amount: obj.amount,
+      title: obj.title,
+      date: obj.date,
+      time: obj.time,
+      cityState: obj.cityState,
+      tag: obj.tag,
+      sign: obj.sign
+    })
+    .then(result => {
+      getTrans();
+    })
+    .catch(err => console.log(err))
+    // setEntries(array);
+    // setFilter(array);
+  }
+  // post new goals -----
+  const addGoals = (obj) => {
+    axios.post('http://localhost:3005/budget/goals', {
+      save: obj.save,
+      date: obj.date,
+      sdate: obj.sdate
+    })
+    .then(result => {
+      getGoals();
+    })
+    .catch(err => console.log(err))
+    // setEntries(array);
+    // setFilter(array);
   }
 
-  // search filter results for transactions
+  // search filter results for transactions -----
   const searchFilter = (letters) => {
     // if input letters is an empty array, keep showing full data
     if (Array.isArray(letters)) {
@@ -66,8 +146,20 @@ const App = (props) => {
     }
   }
 
+  // use effects to render new data -----
   useEffect(() => {
     console.log(entries)
+    // get balance
+    getBal();
+    // get all transactions
+    getTrans();
+    // get all goals
+    getGoals();
+  }, []);
+
+  useEffect(() => {
+    console.log(entries)
+    console.log(goals)
   }, [balance, entries, filter, goals]);
 
   return (
@@ -80,7 +172,7 @@ const App = (props) => {
       {/* HOME PAGE ---------------- */}
       <div>
         <Nav />
-        <Budget balance={balance} setBalance={setBalance} updateBal={updateBal} filter={filter} updateEntries={updateEntries}/>
+        <Budget balance={balance} setBalance={setBalance} setBal={setBal} updateBal={updateBal} filter={filter} addTrans={addTrans}/>
 
         {/* toggles transactions and goals */}
         <div className="toggle-btns">
@@ -105,7 +197,7 @@ const App = (props) => {
           <Transactions filter={filter} searchFilter={searchFilter} />
 
           {/* goals */}
-          <Goals goals={goals} updateGoals={updateGoals} filter={filter}/>
+          <Goals goals={goals} addGoals={addGoals} filter={filter}/>
         </div>
 
         <div className="footer">

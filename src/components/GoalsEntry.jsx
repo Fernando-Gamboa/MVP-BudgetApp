@@ -8,7 +8,7 @@ const GoalsEntry = (props) => {
   let spent = 0;
   props.filter.map((entry, index) => {
     let entryDate = new Date(entry.date);
-    let goalDate = new Date(props.goal.Sdate);
+    let goalDate = new Date(props.goal.sdate);
     console.log(entryDate, goalDate, '---')
     // if transaction dates are greater than our goal date
     if (entryDate >= goalDate) {
@@ -34,7 +34,7 @@ const GoalsEntry = (props) => {
       <div className='EntryContainer'>
 
         <div className="progress" style={{width: "35%"}}>
-          <div className="progress-bar" role="progressbar" aria-label="Example with label" style={{width: `${Number(`${(spent / props.goal.save) * 100}`)}%`}} aria-valuenow={Number(`${(spent / props.goal.save) * 100}`)} aria-valuemin="0" aria-valuemax="100">{`${(spent / props.goal.save) * 100}% / 100%`}</div>
+          <div className="progress-bar" role="progressbar" aria-label="Example with label" style={{width: `${Number(`${Math.round((spent / props.goal.save) * 100)}`)}%`}} aria-valuenow={Number(`${Math.round((spent / props.goal.save) * 100)}`)} aria-valuemin="0" aria-valuemax="100">{`${Math.round((spent / props.goal.save) * 100)}% / 100%`}</div>
         </div>
         <span className='' style={{float:'right', marginLeft: '2%'}}>
           {`$${spent} / $${props.goal.save}`}  &nbsp;&nbsp; {failed ? <i class="fa-solid fa-circle-xmark"></i> : completed ? <i class="fa-solid fa-circle-check"></i> : ''}
@@ -43,7 +43,7 @@ const GoalsEntry = (props) => {
       </div>
 
       <div className='user_info' >
-        {`${format(new Date(props.goal.Sdate.replace(/-/g, '/')), 'MM/dd/yyyy')} - ${format(new Date(props.goal.date.replace(/-/g, '/')), 'MM/dd/yyyy')}`}
+        {`${format(new Date(props.goal.sdate.replace(/-/g, '/')), 'MM/dd/yyyy')} - ${format(new Date(props.goal.date.replace(/-/g, '/')), 'MM/dd/yyyy')}`}
       </div>
     </>
   )

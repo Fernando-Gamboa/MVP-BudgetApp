@@ -3,11 +3,11 @@ const Promise = require("bluebird");
 
 // use .env for this data
 const pool = new Pool({
-  host: process.env.HOST,
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE,
-  port: process.env.PORT,
+  host: process.env.PGHOST,
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  database: process.env.PGDATABASE,
+  port: process.env.PGPORT,
 });
 
 
@@ -16,7 +16,7 @@ const db = Promise.promisifyAll(pool, { multiArgs: true });
 
 // if .connectASYNC no need for schema.sql file ---
 db.connectAsync()
-  .then(() => console.log(`Connected to Postgres`))
+  .then(() => console.log(`Connected to Postgres: ${process.env.PGDATABASE}`))
   .then(() =>
     // Expand this table definition as needed: LOGIN ---
     db.queryAsync(
@@ -32,7 +32,7 @@ db.connectAsync()
   .then(() =>
     // Expand this table definition as needed: GOALS ---
     db.queryAsync(
-      "CREATE TABLE IF NOT EXISTS goals (id serial NOT NULL PRIMARY KEY, userid INT REFERENCES login(id), budget VARCHAR(500) NOT NULL, date VARCHAR(500) NOT NULL)"
+      "CREATE TABLE IF NOT EXISTS goals (id serial NOT NULL PRIMARY KEY, userid INT REFERENCES login(id), save VARCHAR(500) NOT NULL, sdate VARCHAR(500) NOT NULL, date VARCHAR(500) NOT NULL)"
     )
   )
   .catch((err) => console.log(err));

@@ -13,8 +13,11 @@ const SetGoal = (props) => {
         let obj = {};
         obj['save'] = e.target.save.value;
         obj['date'] = e.target.date.value;
-        obj['Sdate'] = e.target.Sdate.value;
-        props.updateGoals([...props.goals, obj]);
+        obj['sdate'] = e.target.sdate.value;
+        props.addGoals(obj);
+        e.target.save.value = '';
+        e.target.date.value = '';
+        e.target.sdate.value = '';
       }}>
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
@@ -29,8 +32,8 @@ const SetGoal = (props) => {
                 <input type="number" className="form-control" id="save"></input>
               </div>
               <div className="mb-3">
-                <label htmlFor="Sdate" name='Sdate' className="col-form-label">When should this goal start?</label>
-                <input type="date" className="form-control" id="Sdate"></input>
+                <label htmlFor="sdate" name='sdate' className="col-form-label">When should this goal start?</label>
+                <input type="date" className="form-control" id="sdate"></input>
               </div>
               <div className="mb-3">
                 <label htmlFor="date" name='date' className="col-form-label">When should this goal end?</label>

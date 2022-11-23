@@ -19,7 +19,7 @@ const Goals = (props) => {
           <hr></hr>
           {/* goals button ----------- */}
           <div>
-            <SetGoal goals={props.goals} updateGoals={props.updateGoals} />
+            <SetGoal goals={props.goals} addGoals={props.addGoals} />
           </div>
         </div>
 
