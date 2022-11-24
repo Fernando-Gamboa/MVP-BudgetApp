@@ -9,7 +9,7 @@ const GoalsEntry = (props) => {
   props.filter.map((entry, index) => {
     let entryDate = new Date(entry.date);
     let goalDate = new Date(props.goal.sdate);
-    console.log(entryDate, goalDate, '---')
+    // console.log(entryDate, goalDate, '---')
     // if transaction dates are greater than our goal date
     if (entryDate >= goalDate) {
       // add to spent variable
@@ -17,9 +17,9 @@ const GoalsEntry = (props) => {
     }
     // if current date is greater than our goal date
     if (new Date() >= new Date(props.goal.date)) {
-      console.log(new Date(props.goal.date), 'THIS IS THE GOAL DATE');
-      console.log(new Date(), 'THIS IS THE CURRENT DATE------------------');
-      console.log(`GOAL ${props.goal.save} completed --------------`)
+      // console.log(new Date(props.goal.date), 'THIS IS THE GOAL DATE');
+      // console.log(new Date(), 'THIS IS THE CURRENT DATE------------------');
+      // console.log(`GOAL ${props.goal.save} completed --------------`)
       // set goal completed to true
       completed = true;
     } else if (spent > props.goal.save) {
@@ -27,7 +27,7 @@ const GoalsEntry = (props) => {
       failed = true;
     }
   })
-  console.log(`${Number(`${(spent / props.goal.save) * 100}`)}%`, 'MONEY')
+  // console.log(`${Number(`${(spent / props.goal.save) * 100}`)}%`, 'MONEY')
 
   return (
     <>
@@ -37,7 +37,7 @@ const GoalsEntry = (props) => {
           <div className="progress-bar" role="progressbar" aria-label="Example with label" style={{width: `${Number(`${Math.round((spent / props.goal.save) * 100)}`)}%`}} aria-valuenow={Number(`${Math.round((spent / props.goal.save) * 100)}`)} aria-valuemin="0" aria-valuemax="100">{`${Math.round((spent / props.goal.save) * 100)}% / 100%`}</div>
         </div>
         <span className='' style={{float:'right', marginLeft: '2%'}}>
-          {`$${spent} / $${props.goal.save}`}  &nbsp;&nbsp; {failed ? <i class="fa-solid fa-circle-xmark"></i> : completed ? <i class="fa-solid fa-circle-check"></i> : ''}
+          {`$${spent} / $${props.goal.save}`}  &nbsp;&nbsp; {failed ? <i className="fa-solid fa-circle-xmark"></i> : completed ? <i className="fa-solid fa-circle-check"></i> : ''}
         </span>
 
       </div>

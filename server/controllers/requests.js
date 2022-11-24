@@ -123,9 +123,56 @@ const addGoals = (req, res) => {
   //   .catch(e => console.log('products getOne error', e.response.data))
 }
 
+const deleteTrans = (req, res) => {
+  console.log(req.body, 'delete ----')
+  let query = `DELETE FROM goals WHERE id = ${req.body.id}`;
+  db.query(query, [], (err, response) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(response, 'THIS IS deleteTrans ---');
+      res.status(200).json('Transaction deleted');
+    }
+  })
+
+
+  // MODELS SECTION ---
+  // let id = req.params.id || {id: '40344'};
+  // console.log('get one', req.params);
+  // getProduct(id)
+  //   .then(result => {
+  //     res.status(200).send(result.data);
+  //   })
+  //   .catch(e => console.log('products getOne error', e.response.data))
+}
+
+const deleteGoals = (req, res) => {
+  // let query = `DELETE FROM goals WHERE condition;)`;
+  db.query(query, [], (err, response) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(response, 'THIS IS deleteGoals ---');
+      res.status(200).json('Goal deleted');
+    }
+  })
+
+
+  // MODELS SECTION ---
+  // let id = req.params.id || {id: '40344'};
+  // console.log('get one', req.params);
+  // getProduct(id)
+  //   .then(result => {
+  //     res.status(200).send(result.data);
+  //   })
+  //   .catch(e => console.log('products getOne error', e.response.data))
+}
+
   module.exports.getBal = getBal;
   module.exports.updateBal = updateBal;
   module.exports.getTrans = getTrans;
   module.exports.addTrans = addTrans;
   module.exports.getGoals = getGoals;
   module.exports.addGoals = addGoals;
+  module.exports.deleteTrans = deleteTrans;
+  module.exports.deleteGoals = deleteGoals;

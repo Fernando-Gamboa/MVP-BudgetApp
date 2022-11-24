@@ -1,16 +1,33 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import {useState, useEffect} from 'react';
 
 const Budget = (props) => {
+  let chartData = {
+    "Food": 0,
+    "Entertainment": 0,
+    "Shopping": 0,
+    "Travel": 0,
+    "Transportation": 0,
+    "Services": 0
+  }
+
+  for (let i = 0; i < props.filter.length; i++) {
+    if (chartData[props.filter[i].tag] !== undefined) {
+      chartData[props.filter[i].tag] += Number(props.filter[i].amount);
+    }
+  }
+  console.log(chartData, '---')
 
   ChartJS.register(ArcElement, Tooltip, Legend);
   const data = {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    labels: ['Food', 'Entertainment', 'Shopping', 'Travel', 'Transportation', 'Services/Other'],
     datasets: [
       {
         label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        // data: [12, 19, 3, 5, 2, 3],
+        data: [chartData["Food"], chartData["Entertainment"], chartData["Shopping"], chartData["Travel"], chartData["Transportation"], chartData["Services"] + chartData["Other"]],
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',

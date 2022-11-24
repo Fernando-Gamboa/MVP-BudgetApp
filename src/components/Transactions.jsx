@@ -17,7 +17,7 @@ const Transactions = (props) => {
         <div className="transaction-container">
           <div id='transContainer' className='EContainer'>
             {props.filter.map((entry, index) => (
-              <TransactionsEntry entry={entry} key={index} />
+              <TransactionsEntry entry={entry} key={index} deleteTrans={props.deleteTrans} />
             ))}
           </div>
           <hr></hr>

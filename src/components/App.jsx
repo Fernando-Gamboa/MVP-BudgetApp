@@ -60,7 +60,6 @@ const App = (props) => {
         getBal();
       })
       .catch(err => console.log(err))
-      // setBalance(balance - input);
     } else {
       axios.put('http://localhost:3005/budget/login', {
         username: 'Fernando',
@@ -71,7 +70,6 @@ const App = (props) => {
         getBal();
       })
       .catch(err => console.log(err))
-      // setBalance(balance + input);
     }
   }
   // get all transactions -----
@@ -106,8 +104,6 @@ const App = (props) => {
       getTrans();
     })
     .catch(err => console.log(err))
-    // setEntries(array);
-    // setFilter(array);
   }
   // post new goals -----
   const addGoals = (obj) => {
@@ -120,8 +116,29 @@ const App = (props) => {
       getGoals();
     })
     .catch(err => console.log(err))
-    // setEntries(array);
-    // setFilter(array);
+  }
+
+  // delete transactions -----
+  const deleteTrans = (obj) => {
+    // data: allows you to pick the object you want to remove
+    axios.delete('http://localhost:3005/budget/trans', {data: obj})
+    .then((result) => {
+      getTrans();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+  // delete goals -----
+  const deleteGoals = (obj) => {
+    // data: allows you to pick the object you want to remove
+    axios.delete('http://localhost:3005/budget/goals', {data: obj})
+    .then((result) => {
+      getGoals();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
   }
 
   // search filter results for transactions -----
@@ -194,7 +211,7 @@ const App = (props) => {
 
         <div className="contain-trans-goals">
           {/* transactions */}
-          <Transactions filter={filter} searchFilter={searchFilter} />
+          <Transactions filter={filter} searchFilter={searchFilter} deleteTrans={deleteTrans} />
 
           {/* goals */}
           <Goals goals={goals} addGoals={addGoals} filter={filter}/>

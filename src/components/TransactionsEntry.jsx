@@ -2,7 +2,7 @@ import React from 'react';
 import {format} from 'date-fns';
 
 const TransactionsEntry = (props) => {
-  console.log(props.entry, 'llllllll')
+  // console.log(props.entry, 'llllllll')
   return (
     <>
       {props.entry.title !== 'No transactions found...' ?
@@ -17,7 +17,8 @@ const TransactionsEntry = (props) => {
         </div>
 
         <div className='user_info'>
-          {`${format(new Date(props.entry.date.replace(/-/g, '/')), 'MM/dd/yyyy')}`} &nbsp;&nbsp;|&nbsp;&nbsp; {`${props.entry.time}`}
+          {`${format(new Date(props.entry.date.replace(/-/g, '/')), 'MM/dd/yyyy')}`} &nbsp;&nbsp;|&nbsp;&nbsp; {`${props.entry.time}`} &nbsp;&nbsp;|&nbsp;&nbsp; {<span onClick={(e) => props.deleteTrans(props.entry)}><i class="fa-solid fa-xmark"></i></span>}
+
         </div>
       </>
       :
