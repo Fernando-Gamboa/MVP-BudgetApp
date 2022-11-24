@@ -4,6 +4,7 @@ import { Doughnut } from 'react-chartjs-2';
 import {useState, useEffect} from 'react';
 
 const Budget = (props) => {
+  // set obj to properly show chart data for tags
   let chartData = {
     "Food": 0,
     "Entertainment": 0,
@@ -12,13 +13,12 @@ const Budget = (props) => {
     "Transportation": 0,
     "Services": 0
   }
-
+  // iterate through filtered entries and check/add tags entry amounts
   for (let i = 0; i < props.filter.length; i++) {
     if (chartData[props.filter[i].tag] !== undefined) {
       chartData[props.filter[i].tag] += Number(props.filter[i].amount);
     }
   }
-  console.log(chartData, '---')
 
   ChartJS.register(ArcElement, Tooltip, Legend);
   const data = {

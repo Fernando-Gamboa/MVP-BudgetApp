@@ -6,10 +6,11 @@ const GoalsEntry = (props) => {
   let completed = false;
   let failed = false;
   let spent = 0;
+
+  // iterate through filtered entries and compare dates
   props.filter.map((entry, index) => {
     let entryDate = new Date(entry.date);
     let goalDate = new Date(props.goal.sdate);
-    // console.log(entryDate, goalDate, '---')
     // if transaction dates are greater than our goal date
     if (entryDate >= goalDate) {
       // add to spent variable
@@ -17,9 +18,6 @@ const GoalsEntry = (props) => {
     }
     // if current date is greater than our goal date
     if (new Date() >= new Date(props.goal.date)) {
-      // console.log(new Date(props.goal.date), 'THIS IS THE GOAL DATE');
-      // console.log(new Date(), 'THIS IS THE CURRENT DATE------------------');
-      // console.log(`GOAL ${props.goal.save} completed --------------`)
       // set goal completed to true
       completed = true;
     } else if (spent > props.goal.save) {
@@ -27,7 +25,6 @@ const GoalsEntry = (props) => {
       failed = true;
     }
   })
-  // console.log(`${Number(`${(spent / props.goal.save) * 100}`)}%`, 'MONEY')
 
   return (
     <>
@@ -43,7 +40,7 @@ const GoalsEntry = (props) => {
       </div>
 
       <div className='user_info' >
-        {`${format(new Date(props.goal.sdate.replace(/-/g, '/')), 'MM/dd/yyyy')} - ${format(new Date(props.goal.date.replace(/-/g, '/')), 'MM/dd/yyyy')}`}
+        {`${format(new Date(props.goal.sdate.replace(/-/g, '/')), 'MM/dd/yyyy')} - ${format(new Date(props.goal.date.replace(/-/g, '/')), 'MM/dd/yyyy')}`} &nbsp;&nbsp;|&nbsp;&nbsp; {<span className="deleteButton" onClick={(e) => props.deleteGoals(props.goal)}><i className="fa-solid fa-xmark"></i></span>}
       </div>
     </>
   )

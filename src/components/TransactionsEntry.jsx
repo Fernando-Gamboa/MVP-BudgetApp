@@ -11,13 +11,13 @@ const TransactionsEntry = (props) => {
           <span className='T-right'>
             {`${props.entry.title}`}
           </span>
-          <span className='' style={{float:'right'}}>
+          <span className='' style={{float:'right', marginTop: '3.5px'}}>
             {`${props.entry.sign} $${props.entry.amount}`}
           </span>
         </div>
 
         <div className='user_info'>
-          {`${format(new Date(props.entry.date.replace(/-/g, '/')), 'MM/dd/yyyy')}`} &nbsp;&nbsp;|&nbsp;&nbsp; {`${props.entry.time}`} &nbsp;&nbsp;|&nbsp;&nbsp; {<span onClick={(e) => props.deleteTrans(props.entry)}><i class="fa-solid fa-xmark"></i></span>}
+          {`${format(new Date(props.entry.date.replace(/-/g, '/')), 'MM/dd/yyyy')}`} &nbsp;&nbsp;|&nbsp;&nbsp; {`${props.entry.time}`} &nbsp;&nbsp;|&nbsp;&nbsp; {<span className="deleteButton" onClick={(e) => props.deleteTrans(props.entry)}><i className="fa-solid fa-xmark"></i></span>}
 
         </div>
       </>

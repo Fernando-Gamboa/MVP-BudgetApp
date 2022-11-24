@@ -72,6 +72,7 @@ const App = (props) => {
       .catch(err => console.log(err))
     }
   }
+
   // get all transactions -----
   const getTrans = () => {
     axios.get('http://localhost:3005/budget/trans')
@@ -80,14 +81,6 @@ const App = (props) => {
         setFilter(result.data);
       })
       .catch(err => console.log(err))
-  }
-  // get all goals -----
-  const getGoals = () => {
-    axios.get('http://localhost:3005/budget/goals')
-    .then(result => {
-      setGoals(result.data);
-    })
-    .catch(err => console.log(err))
   }
   // post new transactions -----
   const addTrans = (obj) => {
@@ -105,6 +98,26 @@ const App = (props) => {
     })
     .catch(err => console.log(err))
   }
+  // delete transactions -----
+  const deleteTrans = (obj) => {
+    // data: allows you to pick the object you want to remove
+    axios.delete('http://localhost:3005/budget/trans', {data: obj})
+    .then((result) => {
+      getTrans();
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+
+  // get all goals -----
+  const getGoals = () => {
+    axios.get('http://localhost:3005/budget/goals')
+    .then(result => {
+      setGoals(result.data);
+    })
+    .catch(err => console.log(err))
+  }
   // post new goals -----
   const addGoals = (obj) => {
     axios.post('http://localhost:3005/budget/goals', {
@@ -116,18 +129,6 @@ const App = (props) => {
       getGoals();
     })
     .catch(err => console.log(err))
-  }
-
-  // delete transactions -----
-  const deleteTrans = (obj) => {
-    // data: allows you to pick the object you want to remove
-    axios.delete('http://localhost:3005/budget/trans', {data: obj})
-    .then((result) => {
-      getTrans();
-    })
-    .catch((err) => {
-      console.log(err);
-    })
   }
   // delete goals -----
   const deleteGoals = (obj) => {
@@ -165,7 +166,6 @@ const App = (props) => {
 
   // use effects to render new data -----
   useEffect(() => {
-    console.log(entries)
     // get balance
     getBal();
     // get all transactions
@@ -175,17 +175,12 @@ const App = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log(entries)
-    console.log(goals)
+    // console.log(entries)
+    // console.log(goals)
   }, [balance, entries, filter, goals]);
 
   return (
     <div>
-      {/* LOGIN PAGE --------------- */}
-      {/* <div>
-        <Login />
-      </div> */}
-
       {/* HOME PAGE ---------------- */}
       <div>
         <Nav />
@@ -214,7 +209,7 @@ const App = (props) => {
           <Transactions filter={filter} searchFilter={searchFilter} deleteTrans={deleteTrans} />
 
           {/* goals */}
-          <Goals goals={goals} addGoals={addGoals} filter={filter}/>
+          <Goals goals={goals} addGoals={addGoals} filter={filter} deleteGoals={deleteGoals} />
         </div>
 
         <div className="footer">

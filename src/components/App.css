@@ -245,7 +245,7 @@ input:focus {
 
 
 .T-right{
-  font-size: 14px;
+  font-size: 17px;
   margin-top: .25%;
   width: 15%;
 }
@@ -262,4 +262,10 @@ input:focus {
 /* LOGIN CSS ---------- */
 .gradient-custom {
   background-image: linear-gradient(to bottom, #4f5f7d, #363c47);
+}
+
+/* delete button */
+.deleteButton:hover {
+  cursor: pointer;
+  color: red;
 }

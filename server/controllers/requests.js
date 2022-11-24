@@ -3,8 +3,6 @@ const db = require('../database/db.js');
 
 
 const getBal = (req, res) => {
-  console.log(req)
-  // set a count LIMIT and an OFFSET for pagination
   let query = `SELECT balance FROM login WHERE id = 2`;
   db.query(query, [], (err, response) => {
     if (err) {
@@ -17,8 +15,6 @@ const getBal = (req, res) => {
 }
 
 const updateBal = (req, res) => {
-  console.log(req)
-  // set a count LIMIT and an OFFSET for pagination
   // you need to first set one login row to then later update the balance
   let query = `UPDATE login SET balance = ${req.body.balance} WHERE id = 2`;
   db.query(query, [], (err, response) => {
@@ -32,8 +28,6 @@ const updateBal = (req, res) => {
 }
 
 const getTrans = (req, res) => {
-  console.log(req)
-  // set a count LIMIT and an OFFSET for pagination
   let query = `SELECT * FROM transactions`;
   db.query(query, [], (err, response) => {
     if (err) {
@@ -53,9 +47,6 @@ const getTrans = (req, res) => {
 }
 
 const addTrans = (req, res) => {
-
-  console.log(req.body, 'hi---');
-
   let query = `INSERT INTO transactions (amount, title, date, time, tag, sign) VALUES ('${req.body.amount}', '${req.body.title}', '${req.body.date}', '${req.body.time}', '${req.body.tag}', '${req.body.sign}')`;
   db.query(query, [], (err, response) => {
     if (err) {
@@ -65,7 +56,6 @@ const addTrans = (req, res) => {
       res.status(200).json('Transaction created');
     }
   })
-
 
   // MODELS SECTION ---
   // let id = req.params.id || {id: '40344'};
@@ -78,8 +68,6 @@ const addTrans = (req, res) => {
 }
 
 const getGoals = (req, res) => {
-  console.log(req)
-  // set a count LIMIT and an OFFSET for pagination
   let query = `SELECT * FROM goals`;
   db.query(query, [], (err, response) => {
     if (err) {
@@ -99,9 +87,6 @@ const getGoals = (req, res) => {
 }
 
 const addGoals = (req, res) => {
-
-  console.log(req.body, 'hi---');
-
   let query = `INSERT INTO goals (save, sdate, date) VALUES ('${req.body.save}', '${req.body.sdate}', '${req.body.date}')`;
   db.query(query, [], (err, response) => {
     if (err) {
@@ -111,7 +96,6 @@ const addGoals = (req, res) => {
       res.status(200).json('Goal created');
     }
   })
-
 
   // MODELS SECTION ---
   // let id = req.params.id || {id: '40344'};
@@ -124,8 +108,7 @@ const addGoals = (req, res) => {
 }
 
 const deleteTrans = (req, res) => {
-  console.log(req.body, 'delete ----')
-  let query = `DELETE FROM goals WHERE id = ${req.body.id}`;
+  let query = `DELETE FROM transactions WHERE id = ${req.body.id}`;
   db.query(query, [], (err, response) => {
     if (err) {
       console.log(err);
@@ -134,7 +117,6 @@ const deleteTrans = (req, res) => {
       res.status(200).json('Transaction deleted');
     }
   })
-
 
   // MODELS SECTION ---
   // let id = req.params.id || {id: '40344'};
@@ -147,16 +129,15 @@ const deleteTrans = (req, res) => {
 }
 
 const deleteGoals = (req, res) => {
-  // let query = `DELETE FROM goals WHERE condition;)`;
+  let query = `DELETE FROM goals WHERE id = ${req.body.id}`;
   db.query(query, [], (err, response) => {
     if (err) {
       console.log(err);
     } else {
-      console.log(response, 'THIS IS deleteGoals ---');
+      // console.log(response, 'THIS IS deleteGoals ---');
       res.status(200).json('Goal deleted');
     }
   })
-
 
   // MODELS SECTION ---
   // let id = req.params.id || {id: '40344'};
