@@ -13,11 +13,9 @@
 <a href="https://reactjs.org/">![-react](https://user-images.githubusercontent.com/103979716/199112745-aea0ac0c-11f8-40be-a7b5-08300e3945a5.svg)</a>
 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Introduction">![-javascript](https://user-images.githubusercontent.com/103979716/199113123-04739e76-7bf1-4ce8-a19b-68228ebabc5f.svg)</a>
 <a href="https://expressjs.com/">![-express](https://user-images.githubusercontent.com/103979716/199112780-09753942-cce4-4551-9b0d-91d391a5d0fe.svg)</a>
-<a href="https://tailwindcss.com/">![-tailwind](https://user-images.githubusercontent.com/103979716/205179159-3d7bb4cd-7bf7-4834-aba6-aaacd5c182b0.svg)</a>
-<a href="https://socket.io/">![-socket io (1)](https://user-images.githubusercontent.com/103979716/205179477-cc07e317-b77a-4b44-a57e-7ca011ff4802.svg)</a>
 <a href="https://firebase.google.com/">![-firebase](https://user-images.githubusercontent.com/103979716/205181943-6501e316-fa60-4a9f-b241-afa1c098a44f.svg)</a>
-<a href="https://www.npmjs.com/package/framer-motion">![-framer-motion](https://user-images.githubusercontent.com/103979716/205181960-9a53a8cc-93de-457e-8da8-47d1e7691610.svg)</a>
-<a href="https://www.mongodb.com/">![-mongodb](https://user-images.githubusercontent.com/103979716/205179494-e3fe89a2-6bcb-47d5-a0c1-b7cb47991ed0.svg)</a>
+<a href="https://getbootstrap.com/">![-bootstrap](https://user-images.githubusercontent.com/103979716/205512665-0e0445f1-b7dc-48b5-90a8-234b270b2391.svg)</a>
+<a href="https://www.postgresql.org/">![-postgres](https://user-images.githubusercontent.com/103979716/205512689-b6ec7696-0e88-407a-96f7-3b42bdf9d5a7.svg)</a>
 
 <br></br>
 <!-- ABOUT THE PROJECT -->
