@@ -1,70 +1,245 @@
-# Getting Started with Create React App
+<h1 align="center">
+  <br>
+  MyBudget - Budgeting Application
+  <br>
+</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h4 align="center">
+  <br>
+  A web app solution to help users set budgets and track expenses
+  <br>
+</h4>
 
-## Available Scripts
+<a href="https://reactjs.org/">![-react](https://user-images.githubusercontent.com/103979716/199112745-aea0ac0c-11f8-40be-a7b5-08300e3945a5.svg)</a>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Introduction">![-javascript](https://user-images.githubusercontent.com/103979716/199113123-04739e76-7bf1-4ce8-a19b-68228ebabc5f.svg)</a>
+<a href="https://expressjs.com/">![-express](https://user-images.githubusercontent.com/103979716/199112780-09753942-cce4-4551-9b0d-91d391a5d0fe.svg)</a>
+<a href="https://tailwindcss.com/">![-tailwind](https://user-images.githubusercontent.com/103979716/205179159-3d7bb4cd-7bf7-4834-aba6-aaacd5c182b0.svg)</a>
+<a href="https://socket.io/">![-socket io (1)](https://user-images.githubusercontent.com/103979716/205179477-cc07e317-b77a-4b44-a57e-7ca011ff4802.svg)</a>
+<a href="https://firebase.google.com/">![-firebase](https://user-images.githubusercontent.com/103979716/205181943-6501e316-fa60-4a9f-b241-afa1c098a44f.svg)</a>
+<a href="https://www.npmjs.com/package/framer-motion">![-framer-motion](https://user-images.githubusercontent.com/103979716/205181960-9a53a8cc-93de-457e-8da8-47d1e7691610.svg)</a>
+<a href="https://www.mongodb.com/">![-mongodb](https://user-images.githubusercontent.com/103979716/205179494-e3fe89a2-6bcb-47d5-a0c1-b7cb47991ed0.svg)</a>
 
-In the project directory, you can run:
+<br></br>
+<!-- ABOUT THE PROJECT -->
+<h2>About the Project</h2>
+A web app solution to help users set budgets and track expenses all in one place, with a method for users to login/signup, arrange bugets to track transactions and set goals to save money whether it's for short term or long term.
 
-### `npm start`
+### This project includes the following sections:
+1. Login/Signup
+2. Home Page
+3. Buget
+4. Chart
+5. Transactions
+6. Goals
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## App Features
+<!-- Login/Signup -->
+### Login/Signup:
+<div align="center">
+  <img src="" alt="login page" width="500">
+</div>
+<br></br>
+Users can login or create a new user account to start tracking and setting budget goals.
+<br></br>
+<table>
+  <tr>
+    <td>
+      <img src="" alt="" width="500">
+    </td>
+    <td>
+      <b>Navigation Bar:</b>  The navigation bar inclues the company logo, profile, and login process. The navigation bar changes depending on user's login status. Users with an account can acces their profile and search for other users.
+    </td>
+  </tr>
+</table>
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<!-- Home Page -->
+### Home Page:
+<div align="center">
+  <img src="" alt="Home Page" width="500">
+</div>
+<br></br>
+Here in the home page you can easily traverse and explore your budget, chart expenses, transactions, and goals.
+<br></br>
+<table>
+  <tr>
+    <td>
+      <img src="" alt="" width="250">
+    </td>
+    <td>
+      <b>Overview:</b>  Have everything you need, within a click away.
+    </td>
+  </tr>
+</table>
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<!-- Budget -->
+### Budget:
+<div align="center">
+  <img src="" alt="" width="500">
+</div>
+<br></br>
+Setting a budget is as simple as ever.
+<br></br>
+<!-- <table>
+  <tr>
+    <td>
+      <img src="SOURCE" alt="SCREENSHOT" width="500">
+    </td>
+    <td>
+      <b>My budget:</b>  Set your own budgets to keep track of what you want to save.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="SOURCE" alt="SCREENSHOT" width="500">
+    </td>
+    <td>
+      <b>Budget modal:</b>  A clean and simple modal opens up to allow for budget intup.
+    </td>
+  </tr>
+</table> -->
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<!-- Chart -->
+### Doughnut Chart:
+<div align="center">
+  <img src="" alt="chart" width="500">
+</div>
+<br></br>
+A chart is displayed at all times in the home page, it's data consist of 6 different tags. These tags include Food, Entertainment, Shopping, Travel, Transportation, Services/Other. Depending on what the user spends, the category tag will properly display the data within the chart. 
+<br></br>
+<table>
+  <tr>
+    <td>
+      <img src="" alt="" width="500">
+    </td>
+    <td>
+      <b>Tags:</b>  These tags can be shown or hidden to display only the data that matters to you.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="" alt="" width="500">
+    </td>
+    <td>
+      <b>Unique colors:</b>  These tags are attached to a specific color to help users distiguish certain tag categories easier.
+    </td>
+  </tr>
+</table>
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<!-- Transactions -->
+### Transactions:
+<div align="center">
+  <img src="" alt="" width="500">
+</div>
+<br></br>
+  Users have the ability keep track of expenses by adding transactions, these transaction expenses will automatically deduct from your current budget.
+<br></br>
+<table>
+  <tr>
+    <td>
+      <img src="" alt="" width="500">
+    </td>
+    <td>
+      <b>Add:</b>  Easily add trasnactions with a modal window popup.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="" alt="" width="500">
+    </td>
+    <td>
+      <b>Remove:</b>  Remove transactions with a simple click.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="" alt="" width="500">
+    </td>
+    <td>
+      <b>Edit:</b>  Editing transactions is just as easy as adding them.
+    </td>
+  </tr>
+</table>
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<!-- Goals -->
+### Goals:
+<div align="center">
+  <img src="" alt="" width="500">
+</div>
+<br></br>
+Setting financial goals is an important aspect when it come to savings and setting them is nothing shorter than simple.
+<br></br>
+<table>
+  <tr>
+    <td>
+      <img src="" alt="" width="500">
+    </td>
+    <td>
+      <b>Progress Bar:</b>  An ineractive progression bar towards your goal will help you stay on top of your goals.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="" alt="" width="500">
+    </td>
+    <td>
+      <b>Add:</b>  Easily add trasnactions with a modal window popup.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="" alt="" width="500">
+    </td>
+    <td>
+      <b>Remove:</b>  Remove transactions with a simple click.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <img src="" alt="" width="500">
+    </td>
+    <td>
+      <b>Edit:</b>  Editing transactions is just as easy as adding them.
+    </td>
+  </tr>
+</table>
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## Getting Started:
+  - Install dependencies in MVP-BUDGETAPP:
+    - When your in the root folder
+    - `npm install`
+    
+  - Make a copy of `example.env` and rename to `.env` in server folder
+    - set PGUSER to your postgres user
+    
+  - Install dependencies in Server:
+    - cd into MVP-BUDGETAPP/server
+    - `npm install`
+    
+  - Enter postgres through terminal
+    - use psql
+    - Create database 'budget' before running this project!
+    
+  - Run Servers:
+    - In MVP-BUDGETAPP - `npm run start`
+        - MVP-BUDGETAPP runs on PORT 3000
+    - In server - `npm run server`
+        - server runs on PORT 3005
+        - postgres database runs on PORT 5432
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  - Launch site: http://localhost:3000
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p align="right">(<a href="#top">back to top</a>)</p>
