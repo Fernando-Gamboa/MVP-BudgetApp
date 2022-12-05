@@ -1,6 +1,8 @@
 const controllers = require('./controllers/index.js');
 const router = require('express').Router();
 
+// users
+router.post('/user', controllers.requests.newUser);
 // balance
 router.get('/login', controllers.requests.getBal);
 router.put('/login', controllers.requests.updateBal);

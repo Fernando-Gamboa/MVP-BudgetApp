@@ -27,10 +27,14 @@ const App = (props) => {
     }
     document.querySelector('.toggled').style.transition = 'font 0.3s ease'
   }
-
+  console.log(props.userInfo, 'HERE ------')
   // get my balance -----
-  const getBal = () => {
-    axios.get('http://localhost:3005/budget/login')
+  const getBal = (user) => {
+    axios.get('http://localhost:3005/budget/login', {
+      params: {
+        email: user
+      }
+    })
     .then(result => {
       setBalance(result.data);
     })
@@ -39,12 +43,12 @@ const App = (props) => {
   // set my balance -----
   const setBal = (input) => {
     axios.put('http://localhost:3005/budget/login', {
-      username: 'Fernando',
-      password: ' ',
+      username: props.userInfo,
+      // password: ' ',
       balance: input
     })
     .then(result => {
-      getBal();
+      getBal(props.userInfo);
     })
     .catch(err => console.log(err))
   }
@@ -52,30 +56,34 @@ const App = (props) => {
   const updateBal = (operator, input) => {
     if (operator === '-') {
       axios.put('http://localhost:3005/budget/login', {
-        username: 'Fernando',
-        password: ' ',
+        username: props.userInfo,
+        // password: ' ',
         balance: balance - input
       })
       .then(result => {
-        getBal();
+        getBal(props.userInfo);
       })
       .catch(err => console.log(err))
     } else {
       axios.put('http://localhost:3005/budget/login', {
-        username: 'Fernando',
-        password: ' ',
+        username: props.userInfo,
+        // password: ' ',
         balance: balance + input
       })
       .then(result => {
-        getBal();
+        getBal(props.userInfo);
       })
       .catch(err => console.log(err))
     }
   }
 
   // get all transactions -----
-  const getTrans = () => {
-    axios.get('http://localhost:3005/budget/trans')
+  const getTrans = (user) => {
+    axios.get('http://localhost:3005/budget/trans', {
+      params: {
+        email: user
+      }
+    })
       .then(result => {
         setEntries(result.data);
         setFilter(result.data);
@@ -85,6 +93,7 @@ const App = (props) => {
   // post new transactions -----
   const addTrans = (obj) => {
     axios.post('http://localhost:3005/budget/trans', {
+      username: props.userInfo,
       amount: obj.amount,
       title: obj.title,
       date: obj.date,
@@ -94,7 +103,7 @@ const App = (props) => {
       sign: obj.sign
     })
     .then(result => {
-      getTrans();
+      getTrans(props.userInfo);
     })
     .catch(err => console.log(err))
   }
@@ -103,7 +112,7 @@ const App = (props) => {
     // data: allows you to pick the object you want to remove
     axios.delete('http://localhost:3005/budget/trans', {data: obj})
     .then((result) => {
-      getTrans();
+      getTrans(props.userInfo);
     })
     .catch((err) => {
       console.log(err);
@@ -111,8 +120,12 @@ const App = (props) => {
   }
 
   // get all goals -----
-  const getGoals = () => {
-    axios.get('http://localhost:3005/budget/goals')
+  const getGoals = (user) => {
+    axios.get('http://localhost:3005/budget/goals', {
+      params: {
+        email: user
+      }
+    })
     .then(result => {
       setGoals(result.data);
     })
@@ -121,12 +134,13 @@ const App = (props) => {
   // post new goals -----
   const addGoals = (obj) => {
     axios.post('http://localhost:3005/budget/goals', {
+      username: props.userInfo,
       save: obj.save,
       date: obj.date,
       sdate: obj.sdate
     })
     .then(result => {
-      getGoals();
+      getGoals(props.userInfo);
     })
     .catch(err => console.log(err))
   }
@@ -135,7 +149,7 @@ const App = (props) => {
     // data: allows you to pick the object you want to remove
     axios.delete('http://localhost:3005/budget/goals', {data: obj})
     .then((result) => {
-      getGoals();
+      getGoals(props.userInfo);
     })
     .catch((err) => {
       console.log(err);
@@ -167,11 +181,11 @@ const App = (props) => {
   // use effects to render new data -----
   useEffect(() => {
     // get balance
-    getBal();
+    getBal(props.userInfo);
     // get all transactions
-    getTrans();
+    getTrans(props.userInfo);
     // get all goals
-    getGoals();
+    getGoals(props.userInfo);
   }, []);
 
   useEffect(() => {

@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Signup = ({createNewUser}) => {
   const emailRef = useRef();
@@ -21,7 +22,11 @@ const Signup = ({createNewUser}) => {
       setLoading(true);
       let user = await signup(emailRef.current.value, passwordRef.current.value);
 
-
+      console.log(user, 'THIS IS USER SIGN UP ---')
+      addUser({
+        username: emailRef.current.value,
+        password: passwordRef.current.value
+      })
       navigate('/home');
       createNewUser(user);
     } catch (err) {
@@ -29,6 +34,20 @@ const Signup = ({createNewUser}) => {
     }
     setLoading(false);
   };
+
+  // post new transactions -----
+  const addUser = (obj) => {
+    axios.post('http://localhost:3005/budget/user', {
+      username: obj.username,
+      password: obj.password,
+      balance: "0"
+    })
+    .then(result => {
+      console.log('CREATED USER')
+    })
+    .catch(err => console.log(err))
+  }
+
 
   return (
     <section className="vh-100 gradient-custom" id='login'>

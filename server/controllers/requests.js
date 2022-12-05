@@ -2,8 +2,20 @@ const {getProducts, getProduct, getStyles, getRelated} = require('../models/requ
 const db = require('../database/db.js');
 
 
+const newUser = (req, res) => {
+  let query = `INSERT INTO login (username, password, balance) VALUES ('${req.body.username}', '${req.body.password}', '${req.body.balance}')`;
+  db.query(query, [], (err, response) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(response, 'THIS IS newUser ---');
+      res.status(200).json('User created');
+    }
+  })
+}
+
 const getBal = (req, res) => {
-  let query = `SELECT balance FROM login WHERE id = 2`;
+  let query = `SELECT balance FROM login WHERE username = '${req.query.email}'`;
   db.query(query, [], (err, response) => {
     if (err) {
       console.log(err);
@@ -16,7 +28,7 @@ const getBal = (req, res) => {
 
 const updateBal = (req, res) => {
   // you need to first set one login row to then later update the balance
-  let query = `UPDATE login SET balance = ${req.body.balance} WHERE id = 2`;
+  let query = `UPDATE login SET balance = ${req.body.balance} WHERE username = '${req.body.username}'`;
   db.query(query, [], (err, response) => {
     if (err) {
       console.log(err);
@@ -28,7 +40,7 @@ const updateBal = (req, res) => {
 }
 
 const getTrans = (req, res) => {
-  let query = `SELECT * FROM transactions`;
+  let query = `SELECT * FROM transactions WHERE userid = (SELECT id from login WHERE username = '${req.query.email}')`;
   db.query(query, [], (err, response) => {
     if (err) {
       console.log(err);
@@ -47,7 +59,7 @@ const getTrans = (req, res) => {
 }
 
 const addTrans = (req, res) => {
-  let query = `INSERT INTO transactions (amount, title, date, time, tag, sign) VALUES ('${req.body.amount}', '${req.body.title}', '${req.body.date}', '${req.body.time}', '${req.body.tag}', '${req.body.sign}')`;
+  let query = `INSERT INTO transactions (userid, amount, title, date, time, tag, sign) VALUES ((SELECT id from login WHERE username = '${req.body.username}'), '${req.body.amount}', '${req.body.title}', '${req.body.date}', '${req.body.time}', '${req.body.tag}', '${req.body.sign}')`;
   db.query(query, [], (err, response) => {
     if (err) {
       console.log(err);
@@ -68,7 +80,7 @@ const addTrans = (req, res) => {
 }
 
 const getGoals = (req, res) => {
-  let query = `SELECT * FROM goals`;
+  let query = `SELECT * FROM goals WHERE userid = (SELECT id from login WHERE username = '${req.query.email}')`;
   db.query(query, [], (err, response) => {
     if (err) {
       console.log(err);
@@ -87,7 +99,7 @@ const getGoals = (req, res) => {
 }
 
 const addGoals = (req, res) => {
-  let query = `INSERT INTO goals (save, sdate, date) VALUES ('${req.body.save}', '${req.body.sdate}', '${req.body.date}')`;
+  let query = `INSERT INTO goals (userid, save, sdate, date) VALUES ((SELECT id from login WHERE username = '${req.body.username}'), '${req.body.save}', '${req.body.sdate}', '${req.body.date}')`;
   db.query(query, [], (err, response) => {
     if (err) {
       console.log(err);
@@ -149,6 +161,7 @@ const deleteGoals = (req, res) => {
   //   .catch(e => console.log('products getOne error', e.response.data))
 }
 
+  module.exports.newUser = newUser;
   module.exports.getBal = getBal;
   module.exports.updateBal = updateBal;
   module.exports.getTrans = getTrans;

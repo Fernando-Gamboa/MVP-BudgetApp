@@ -19,9 +19,9 @@ const RenderLogHome = (props) => {
   const [userInfo, setUserInfo] = useState();
 
   const getUserData = async (user) => {
-    let userData = await axios.get(`/api/login/${user.firebaseId}`, {params: user});
-    console.log(userData)
-    setUserInfo(userData.data);
+    // let userData = await axios.get(`//${user.firebaseId}`, {params: user});
+    console.log(user)
+    setUserInfo(user.email);
   };
 
   const createNewUser = async (user) => {
@@ -48,7 +48,7 @@ const RenderLogHome = (props) => {
           <Route exact path="/" element={<Login getUserData={getUserData}/>}></Route>
           <Route exact path='/signup' element={<SignUp createNewUser={createNewUser}/>}></Route>
           <Route exact path='/forgot-password' element={<ForgotPassword />}></Route>
-          <Route exact path="/home" element={<App />}></Route>
+          <Route exact path="/home" element={<App userInfo={userInfo}/>}></Route>
         </Routes>
       </div>
     </Router>
