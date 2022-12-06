@@ -20,7 +20,7 @@ db.connectAsync()
   .then(() =>
     // Expand this table definition as needed: LOGIN ---
     db.queryAsync(
-      "CREATE TABLE IF NOT EXISTS login (id serial NOT NULL PRIMARY KEY, username VARCHAR(500) NOT NULL, password VARCHAR(500) NOT NULL, balance INT)"
+      "CREATE TABLE IF NOT EXISTS login (id serial NOT NULL PRIMARY KEY, username VARCHAR(500) NOT NULL, password VARCHAR(500) NOT NULL, balance INT, firebaseid VARCHAR(1000) NOT NULL)"
     )
   )
   .then(() =>

@@ -8,6 +8,7 @@ import { AuthProvider } from './contexts/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('app'));
 root.render(
+  // AuthProvider is needed for firebase authentication ---
   <AuthProvider>
     <RenderLogHome />
   </AuthProvider>

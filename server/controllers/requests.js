@@ -3,7 +3,7 @@ const db = require('../database/db.js');
 
 
 const newUser = (req, res) => {
-  let query = `INSERT INTO login (username, password, balance) VALUES ('${req.body.username}', '${req.body.password}', '${req.body.balance}')`;
+  let query = `INSERT INTO login (username, password, balance, firebaseid) VALUES ('${req.body.username}', '${req.body.password}', '${req.body.balance}', '${req.body.firebaseId}')`;
   db.query(query, [], (err, response) => {
     if (err) {
       console.log(err);
@@ -15,7 +15,7 @@ const newUser = (req, res) => {
 }
 
 const getBal = (req, res) => {
-  let query = `SELECT balance FROM login WHERE username = '${req.query.email}'`;
+  let query = `SELECT balance FROM login WHERE firebaseid = '${JSON.parse(req.query.firebase)}'`;
   db.query(query, [], (err, response) => {
     if (err) {
       console.log(err);
@@ -28,7 +28,7 @@ const getBal = (req, res) => {
 
 const updateBal = (req, res) => {
   // you need to first set one login row to then later update the balance
-  let query = `UPDATE login SET balance = ${req.body.balance} WHERE username = '${req.body.username}'`;
+  let query = `UPDATE login SET balance = ${req.body.balance} WHERE firebaseid = '${JSON.parse(req.body.firebase)}'`;
   db.query(query, [], (err, response) => {
     if (err) {
       console.log(err);
@@ -40,7 +40,7 @@ const updateBal = (req, res) => {
 }
 
 const getTrans = (req, res) => {
-  let query = `SELECT * FROM transactions WHERE userid = (SELECT id from login WHERE username = '${req.query.email}')`;
+  let query = `SELECT * FROM transactions WHERE userid = (SELECT id from login WHERE firebaseid = '${JSON.parse(req.query.firebase)}')`;
   db.query(query, [], (err, response) => {
     if (err) {
       console.log(err);
@@ -59,7 +59,7 @@ const getTrans = (req, res) => {
 }
 
 const addTrans = (req, res) => {
-  let query = `INSERT INTO transactions (userid, amount, title, date, time, tag, sign) VALUES ((SELECT id from login WHERE username = '${req.body.username}'), '${req.body.amount}', '${req.body.title}', '${req.body.date}', '${req.body.time}', '${req.body.tag}', '${req.body.sign}')`;
+  let query = `INSERT INTO transactions (userid, amount, title, date, time, tag, sign) VALUES ((SELECT id from login WHERE firebaseid = '${JSON.parse(req.body.firebase)}'), '${req.body.amount}', '${req.body.title}', '${req.body.date}', '${req.body.time}', '${req.body.tag}', '${req.body.sign}')`;
   db.query(query, [], (err, response) => {
     if (err) {
       console.log(err);
@@ -80,7 +80,7 @@ const addTrans = (req, res) => {
 }
 
 const getGoals = (req, res) => {
-  let query = `SELECT * FROM goals WHERE userid = (SELECT id from login WHERE username = '${req.query.email}')`;
+  let query = `SELECT * FROM goals WHERE userid = (SELECT id from login WHERE firebaseid = '${JSON.parse(req.query.firebase)}')`;
   db.query(query, [], (err, response) => {
     if (err) {
       console.log(err);
@@ -99,7 +99,7 @@ const getGoals = (req, res) => {
 }
 
 const addGoals = (req, res) => {
-  let query = `INSERT INTO goals (userid, save, sdate, date) VALUES ((SELECT id from login WHERE username = '${req.body.username}'), '${req.body.save}', '${req.body.sdate}', '${req.body.date}')`;
+  let query = `INSERT INTO goals (userid, save, sdate, date) VALUES ((SELECT id from login WHERE firebaseid = '${JSON.parse(req.body.firebase)}'), '${req.body.save}', '${req.body.sdate}', '${req.body.date}')`;
   db.query(query, [], (err, response) => {
     if (err) {
       console.log(err);

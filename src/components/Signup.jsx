@@ -24,11 +24,11 @@ const Signup = ({createNewUser}) => {
 
       console.log(user, 'THIS IS USER SIGN UP ---')
       addUser({
-        username: emailRef.current.value,
-        password: passwordRef.current.value
+        username: user.email,
+        password: passwordRef.current.value,
+        firebaseId: user.firebaseId
       })
-      navigate('/home');
-      createNewUser(user);
+      navigate('/');
     } catch (err) {
       setError(err);
     }
@@ -40,7 +40,8 @@ const Signup = ({createNewUser}) => {
     axios.post('http://localhost:3005/budget/user', {
       username: obj.username,
       password: obj.password,
-      balance: "0"
+      balance: "0",
+      firebaseId: obj.firebaseId
     })
     .then(result => {
       console.log('CREATED USER')

@@ -1,9 +1,11 @@
 import React from 'react';
 import logoNav from './logoNav.svg';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 const Nav = (props) => {
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   return (
     <section id='nav'>
@@ -29,7 +31,9 @@ const Nav = (props) => {
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#logout" onClick={(e) => {
-                  navigate('/')
+                  logout();
+                  localStorage.removeItem('firebase');
+                  navigate('/');
                 }}>Log out</a>
               </li>
             </ul>

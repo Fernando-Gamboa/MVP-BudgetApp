@@ -20,8 +20,9 @@ const Login = ({getUserData}) => {
       setLoading(true);
       const user = await login(emailRef.current.value, passwordRef.current.value);
       if (user) {
-        navigate('/home');
+        console.log(user, 'im logged in! ---------')
         getUserData(user);
+        navigate('/home');
       }
     } catch (err) {
       setLoginExists(false);

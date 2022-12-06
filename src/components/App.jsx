@@ -27,12 +27,19 @@ const App = (props) => {
     }
     document.querySelector('.toggled').style.transition = 'font 0.3s ease'
   }
-  console.log(props.userInfo, 'HERE ------')
+
+  // save firebase id of each user on local storage to keep data persistent for that user
+  // only saving firebase id into local storage
+  if (props.userInfo !== undefined) {
+    localStorage.setItem('firebase', JSON.stringify(props.userInfo.firebaseId));
+  }
+
+  console.log(localStorage.getItem('firebase'), 'HERE LOCAL STORAGE ------')
   // get my balance -----
   const getBal = (user) => {
     axios.get('http://localhost:3005/budget/login', {
       params: {
-        email: user
+        firebase: user,
       }
     })
     .then(result => {
@@ -43,12 +50,12 @@ const App = (props) => {
   // set my balance -----
   const setBal = (input) => {
     axios.put('http://localhost:3005/budget/login', {
-      username: props.userInfo,
+      firebase: localStorage.getItem('firebase'),
       // password: ' ',
       balance: input
     })
     .then(result => {
-      getBal(props.userInfo);
+      getBal(localStorage.getItem('firebase'));
     })
     .catch(err => console.log(err))
   }
@@ -56,22 +63,22 @@ const App = (props) => {
   const updateBal = (operator, input) => {
     if (operator === '-') {
       axios.put('http://localhost:3005/budget/login', {
-        username: props.userInfo,
+        firebase: localStorage.getItem('firebase'),
         // password: ' ',
         balance: balance - input
       })
       .then(result => {
-        getBal(props.userInfo);
+        getBal(localStorage.getItem('firebase'));
       })
       .catch(err => console.log(err))
     } else {
       axios.put('http://localhost:3005/budget/login', {
-        username: props.userInfo,
+        firebase: localStorage.getItem('firebase'),
         // password: ' ',
         balance: balance + input
       })
       .then(result => {
-        getBal(props.userInfo);
+        getBal(localStorage.getItem('firebase'));
       })
       .catch(err => console.log(err))
     }
@@ -81,7 +88,7 @@ const App = (props) => {
   const getTrans = (user) => {
     axios.get('http://localhost:3005/budget/trans', {
       params: {
-        email: user
+        firebase: user
       }
     })
       .then(result => {
@@ -93,7 +100,7 @@ const App = (props) => {
   // post new transactions -----
   const addTrans = (obj) => {
     axios.post('http://localhost:3005/budget/trans', {
-      username: props.userInfo,
+      firebase: localStorage.getItem('firebase'),
       amount: obj.amount,
       title: obj.title,
       date: obj.date,
@@ -103,7 +110,7 @@ const App = (props) => {
       sign: obj.sign
     })
     .then(result => {
-      getTrans(props.userInfo);
+      getTrans(localStorage.getItem('firebase'));
     })
     .catch(err => console.log(err))
   }
@@ -112,7 +119,7 @@ const App = (props) => {
     // data: allows you to pick the object you want to remove
     axios.delete('http://localhost:3005/budget/trans', {data: obj})
     .then((result) => {
-      getTrans(props.userInfo);
+      getTrans(localStorage.getItem('firebase'));
     })
     .catch((err) => {
       console.log(err);
@@ -123,7 +130,7 @@ const App = (props) => {
   const getGoals = (user) => {
     axios.get('http://localhost:3005/budget/goals', {
       params: {
-        email: user
+        firebase: user
       }
     })
     .then(result => {
@@ -134,13 +141,13 @@ const App = (props) => {
   // post new goals -----
   const addGoals = (obj) => {
     axios.post('http://localhost:3005/budget/goals', {
-      username: props.userInfo,
+      firebase: localStorage.getItem('firebase'),
       save: obj.save,
       date: obj.date,
       sdate: obj.sdate
     })
     .then(result => {
-      getGoals(props.userInfo);
+      getGoals(localStorage.getItem('firebase'));
     })
     .catch(err => console.log(err))
   }
@@ -149,7 +156,7 @@ const App = (props) => {
     // data: allows you to pick the object you want to remove
     axios.delete('http://localhost:3005/budget/goals', {data: obj})
     .then((result) => {
-      getGoals(props.userInfo);
+      getGoals(localStorage.getItem('firebase'));
     })
     .catch((err) => {
       console.log(err);
@@ -181,11 +188,11 @@ const App = (props) => {
   // use effects to render new data -----
   useEffect(() => {
     // get balance
-    getBal(props.userInfo);
+    getBal(localStorage.getItem('firebase'));
     // get all transactions
-    getTrans(props.userInfo);
+    getTrans(localStorage.getItem('firebase'));
     // get all goals
-    getGoals(props.userInfo);
+    getGoals(localStorage.getItem('firebase'));
   }, []);
 
   useEffect(() => {
