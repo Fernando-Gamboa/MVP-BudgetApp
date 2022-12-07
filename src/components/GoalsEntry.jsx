@@ -40,8 +40,53 @@ const GoalsEntry = (props) => {
       </div>
 
       <div className='user_info' >
-        {`${format(new Date(props.goal.sdate.replace(/-/g, '/')), 'MM/dd/yyyy')} - ${format(new Date(props.goal.date.replace(/-/g, '/')), 'MM/dd/yyyy')}`} &nbsp;&nbsp;|&nbsp;&nbsp; {<span className="deleteButton" onClick={(e) => props.deleteGoals(props.goal)}><i className="fa-solid fa-xmark"></i></span>}
+        {`${format(new Date(props.goal.sdate.replace(/-/g, '/')), 'MM/dd/yyyy')} - ${format(new Date(props.goal.date.replace(/-/g, '/')), 'MM/dd/yyyy')}`} &nbsp;&nbsp;|&nbsp;&nbsp; {<span className="deleteButton" onClick={(e) => props.deleteGoals(props.goal)}><i className="fa-solid fa-xmark"></i></span>} &nbsp;&nbsp;|&nbsp;&nbsp; {<span className="editButton" data-bs-toggle="modal" data-bs-target="#exampleModal5" onClick={e => {
+          localStorage.setItem('prevGoal', JSON.stringify({...props.goal}))
+          }}><i className = "fa-solid fa-pen fa-xs"></i></span>}
       </div>
+      {/* <!-- Modal --> */}
+      <form className="modal fade" id="exampleModal5" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" onSubmit={(e) => {
+        e.preventDefault();
+        let obj = {};
+        obj['save'] = e.target.save.value;
+        obj['sdate'] = e.target.sdate.value;
+        obj['date'] = e.target.date.value;
+        obj['prev'] = JSON.parse(localStorage.getItem('prevGoal'));
+        props.editGoals(obj);
+        e.target.save.value = '';
+        e.target.date.value = '';
+        e.target.sdate.value = '';
+        localStorage.removeItem('prevGoal');
+      }}>
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="exampleModalLabel"><b>Edit your goal</b></h1>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div className="modal-body">
+
+              <div className="mb-3">
+                <label htmlFor="save" name="save" className="col-form-label">What's your budget?</label>
+                <input type="number" className="form-control" id="save"></input>
+              </div>
+              <div className="mb-3">
+                <label htmlFor="sdate" name='sdate' className="col-form-label">When should this goal start?</label>
+                <input type="date" className="form-control" id="sdate"></input>
+              </div>
+              <div className="mb-3">
+                <label htmlFor="date" name='date' className="col-form-label">When should this goal end?</label>
+                <input type="date" className="form-control" id="date"></input>
+              </div>
+
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Update</button>
+            </div>
+          </div>
+        </div>
+      </form>
     </>
   )
 }

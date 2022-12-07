@@ -269,3 +269,9 @@ input:focus {
   cursor: pointer;
   color: red;
 }
+
+/* edit button */
+.editButton:hover {
+  cursor: pointer;
+  color: rgb(130, 176, 255);
+}

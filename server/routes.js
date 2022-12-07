@@ -10,9 +10,11 @@ router.put('/login', controllers.requests.updateBal);
 router.get('/trans', controllers.requests.getTrans);
 router.post('/trans', controllers.requests.addTrans);
 router.delete('/trans', controllers.requests.deleteTrans);
+router.put('/trans', controllers.requests.editTrans);
 // goals
 router.get('/goals', controllers.requests.getGoals);
 router.post('/goals', controllers.requests.addGoals);
 router.delete('/goals', controllers.requests.deleteGoals);
+router.put('/goals', controllers.requests.editGoals);
 
 module.exports = router;

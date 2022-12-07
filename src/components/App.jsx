@@ -60,27 +60,51 @@ const App = (props) => {
     .catch(err => console.log(err))
   }
   // update my balance -----
-  const updateBal = (operator, input) => {
-    if (operator === '-') {
-      axios.put('http://localhost:3005/budget/login', {
-        firebase: localStorage.getItem('firebase'),
-        // password: ' ',
-        balance: balance - input
-      })
-      .then(result => {
-        getBal(localStorage.getItem('firebase'));
-      })
-      .catch(err => console.log(err))
+  const updateBal = (operator, input, edit, prev) => {
+    if (edit === true) {
+      if (operator === '-') {
+        axios.put('http://localhost:3005/budget/login', {
+          firebase: localStorage.getItem('firebase'),
+          // password: ' ',
+          balance: (balance + prev) - input
+        })
+        .then(result => {
+          getBal(localStorage.getItem('firebase'));
+        })
+        .catch(err => console.log(err))
+      } else {
+        axios.put('http://localhost:3005/budget/login', {
+          firebase: localStorage.getItem('firebase'),
+          // password: ' ',
+          balance: balance + prev + input
+        })
+        .then(result => {
+          getBal(localStorage.getItem('firebase'));
+        })
+        .catch(err => console.log(err))
+      }
     } else {
-      axios.put('http://localhost:3005/budget/login', {
-        firebase: localStorage.getItem('firebase'),
-        // password: ' ',
-        balance: balance + input
-      })
-      .then(result => {
-        getBal(localStorage.getItem('firebase'));
-      })
-      .catch(err => console.log(err))
+      if (operator === '-') {
+        axios.put('http://localhost:3005/budget/login', {
+          firebase: localStorage.getItem('firebase'),
+          // password: ' ',
+          balance: balance - input
+        })
+        .then(result => {
+          getBal(localStorage.getItem('firebase'));
+        })
+        .catch(err => console.log(err))
+      } else {
+        axios.put('http://localhost:3005/budget/login', {
+          firebase: localStorage.getItem('firebase'),
+          // password: ' ',
+          balance: balance + input
+        })
+        .then(result => {
+          getBal(localStorage.getItem('firebase'));
+        })
+        .catch(err => console.log(err))
+      }
     }
   }
 
@@ -125,6 +149,27 @@ const App = (props) => {
       console.log(err);
     })
   }
+  // edit transactions -----
+  const editTrans = (obj) => {
+    // data: allows you to pick the object you want to edit
+    axios.put('http://localhost:3005/budget/trans', {
+      firebase: localStorage.getItem('firebase'),
+      amount: obj.amount,
+      title: obj.title,
+      date: obj.date,
+      time: obj.time,
+      cityState: obj.cityState,
+      tag: obj.tag,
+      sign: obj.sign,
+      prev: obj.prev
+    })
+    .then((result) => {
+      getTrans(localStorage.getItem('firebase'));
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
 
   // get all goals -----
   const getGoals = (user) => {
@@ -155,6 +200,23 @@ const App = (props) => {
   const deleteGoals = (obj) => {
     // data: allows you to pick the object you want to remove
     axios.delete('http://localhost:3005/budget/goals', {data: obj})
+    .then((result) => {
+      getGoals(localStorage.getItem('firebase'));
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  }
+  // edit goals -----
+  const editGoals = (obj) => {
+    // data: allows you to pick the object you want to edit
+    axios.put('http://localhost:3005/budget/goals', {
+      firebase: localStorage.getItem('firebase'),
+      save: obj.save,
+      sdate: obj.sdate,
+      date: obj.date,
+      prev: obj.prev
+    })
     .then((result) => {
       getGoals(localStorage.getItem('firebase'));
     })
@@ -227,10 +289,10 @@ const App = (props) => {
 
         <div className="contain-trans-goals">
           {/* transactions */}
-          <Transactions filter={filter} searchFilter={searchFilter} deleteTrans={deleteTrans} />
+          <Transactions filter={filter} searchFilter={searchFilter} deleteTrans={deleteTrans} editTrans={editTrans} updateBal={updateBal} />
 
           {/* goals */}
-          <Goals goals={goals} addGoals={addGoals} filter={filter} deleteGoals={deleteGoals} />
+          <Goals goals={goals} addGoals={addGoals} filter={filter} deleteGoals={deleteGoals} editGoals={editGoals} />
         </div>
 
         <div className="footer">

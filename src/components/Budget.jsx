@@ -122,7 +122,7 @@ const Budget = (props) => {
               obj['cityState'] = e.target.cityState.value;
               obj['tag'] = e.target.tag.value;
               obj['sign'] = e.target.optionsOutlined.value;
-              props.updateBal(e.target.optionsOutlined.value, Number(e.target.amount.value));
+              props.updateBal(e.target.optionsOutlined.value, Number(e.target.amount.value), false);
               props.addTrans(obj);
               e.target.amount.value = '';
               e.target.title.value = '';
@@ -135,7 +135,7 @@ const Budget = (props) => {
               <div className="modal-dialog modal-dialog-centered">
                 <div className="modal-content">
                   <div className="modal-header">
-                    <h1 className="modal-title fs-5" id="exampleModalLabel"><b>Transactions</b></h1>
+                    <h1 className="modal-title fs-5" id="exampleModalLabel"><b>Add a new transaction</b></h1>
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div className="modal-body">
@@ -185,7 +185,7 @@ const Budget = (props) => {
                   </div>
                   <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Update</button>
+                    <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Add</button>
                   </div>
                 </div>
               </div>

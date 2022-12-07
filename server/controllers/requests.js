@@ -79,6 +79,49 @@ const addTrans = (req, res) => {
   //   .catch(e => console.log('products getOne error', e.response.data))
 }
 
+const deleteTrans = (req, res) => {
+  let query = `DELETE FROM transactions WHERE id = ${req.body.id}`;
+  db.query(query, [], (err, response) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(response, 'THIS IS deleteTrans ---');
+      res.status(200).json('Transaction deleted');
+    }
+  })
+
+  // MODELS SECTION ---
+  // let id = req.params.id || {id: '40344'};
+  // console.log('get one', req.params);
+  // getProduct(id)
+  //   .then(result => {
+  //     res.status(200).send(result.data);
+  //   })
+  //   .catch(e => console.log('products getOne error', e.response.data))
+}
+
+const editTrans = (req, res) => {
+  console.log(req.body, 'this is editTRANS --------');
+  let query = `UPDATE transactions SET amount = '${req.body.amount}', title = '${req.body.title}', date = '${req.body.date}', time = '${req.body.time}', tag = '${req.body.tag}', sign = '${req.body.sign}' WHERE id = ${req.body.prev.id}`;
+  db.query(query, [], (err, response) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(response, 'THIS IS editTrans ---');
+      res.status(200).json('Transaction edited');
+    }
+  })
+
+  // MODELS SECTION ---
+  // let id = req.params.id || {id: '40344'};
+  // console.log('get one', req.params);
+  // getProduct(id)
+  //   .then(result => {
+  //     res.status(200).send(result.data);
+  //   })
+  //   .catch(e => console.log('products getOne error', e.response.data))
+}
+
 const getGoals = (req, res) => {
   let query = `SELECT * FROM goals WHERE userid = (SELECT id from login WHERE firebaseid = '${JSON.parse(req.query.firebase)}')`;
   db.query(query, [], (err, response) => {
@@ -119,27 +162,6 @@ const addGoals = (req, res) => {
   //   .catch(e => console.log('products getOne error', e.response.data))
 }
 
-const deleteTrans = (req, res) => {
-  let query = `DELETE FROM transactions WHERE id = ${req.body.id}`;
-  db.query(query, [], (err, response) => {
-    if (err) {
-      console.log(err);
-    } else {
-      // console.log(response, 'THIS IS deleteTrans ---');
-      res.status(200).json('Transaction deleted');
-    }
-  })
-
-  // MODELS SECTION ---
-  // let id = req.params.id || {id: '40344'};
-  // console.log('get one', req.params);
-  // getProduct(id)
-  //   .then(result => {
-  //     res.status(200).send(result.data);
-  //   })
-  //   .catch(e => console.log('products getOne error', e.response.data))
-}
-
 const deleteGoals = (req, res) => {
   let query = `DELETE FROM goals WHERE id = ${req.body.id}`;
   db.query(query, [], (err, response) => {
@@ -161,12 +183,41 @@ const deleteGoals = (req, res) => {
   //   .catch(e => console.log('products getOne error', e.response.data))
 }
 
-  module.exports.newUser = newUser;
-  module.exports.getBal = getBal;
-  module.exports.updateBal = updateBal;
-  module.exports.getTrans = getTrans;
-  module.exports.addTrans = addTrans;
-  module.exports.getGoals = getGoals;
-  module.exports.addGoals = addGoals;
-  module.exports.deleteTrans = deleteTrans;
-  module.exports.deleteGoals = deleteGoals;
+const editGoals = (req, res) => {
+  console.log(req.body, 'this is editGOALS --------');
+  console.log(req.body.prev.id, 'this is editGOALS --------');
+  let query = `UPDATE goals SET save = '${req.body.save}', sdate = '${req.body.sdate}', date = '${req.body.date}' WHERE id = ${req.body.prev.id}`;
+  db.query(query, [], (err, response) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(response, 'THIS IS editGoals ---');
+      res.status(200).json('Goal edited');
+    }
+  })
+
+  // MODELS SECTION ---
+  // let id = req.params.id || {id: '40344'};
+  // console.log('get one', req.params);
+  // getProduct(id)
+  //   .then(result => {
+  //     res.status(200).send(result.data);
+  //   })
+  //   .catch(e => console.log('products getOne error', e.response.data))
+}
+
+// user
+module.exports.newUser = newUser;
+// balance
+module.exports.getBal = getBal;
+module.exports.updateBal = updateBal;
+// transactions
+module.exports.getTrans = getTrans;
+module.exports.addTrans = addTrans;
+module.exports.deleteTrans = deleteTrans;
+module.exports.editTrans = editTrans;
+// goals
+module.exports.getGoals = getGoals;
+module.exports.addGoals = addGoals;
+module.exports.deleteGoals = deleteGoals;
+module.exports.editGoals = editGoals;
