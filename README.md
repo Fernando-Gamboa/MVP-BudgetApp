@@ -222,8 +222,9 @@ Setting financial goals is an important aspect when it come to savings and setti
     - When your in the root folder
     - `npm install`
     
-  - Make a copy of `example.env` and rename to `.env` in server folder
-    - set PGUSER to your postgres user
+  - Make a copy of `example.env` and rename to `.env` in server folder and in root folder
+    - set PGUSER to your postgres user for the server folder .env
+    - In the root folder .env set the configurations to your firebase account (if you haven't created a firebase account, create one it's free!)
     
   - Install dependencies in Server:
     - cd into MVP-BUDGETAPP/server
