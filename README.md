@@ -191,7 +191,7 @@ Setting financial goals is an important aspect when it come to savings and setti
 <table>
   <tr>
     <td>
-      <img src="https://user-images.githubusercontent.com/103979716/206076215-58d72eaf-b670-464f-8d5d-1c8e9ae3ba81.png" alt="addGoals" width="300">
+      <img src="https://user-images.githubusercontent.com/103979716/206076215-58d72eaf-b670-464f-8d5d-1c8e9ae3ba81.png" alt="addGoals" width="400">
     </td>
     <td>
       <b>Add:</b>  Easily add trasnactions with a modal window popup.
@@ -199,7 +199,7 @@ Setting financial goals is an important aspect when it come to savings and setti
   </tr>
   <tr>
     <td>
-      <img src="https://user-images.githubusercontent.com/103979716/206076340-9e9dde9d-22be-47cc-872a-8a4f4eaae13e.png" alt="progressGoals" width="300">
+      <img src="https://user-images.githubusercontent.com/103979716/206076340-9e9dde9d-22be-47cc-872a-8a4f4eaae13e.png" alt="progressGoals" width="400">
     </td>
     <td>
       <b>Progress Bar:</b>  An ineractive progression bar towards your goal will help you stay on top of your spendings. You can also delete your goals with a simple click.
@@ -207,7 +207,7 @@ Setting financial goals is an important aspect when it come to savings and setti
   </tr>
   <tr>
     <td>
-      <img src="https://user-images.githubusercontent.com/103979716/206076517-a7594d4d-c836-4e55-abfa-dea379a65995.png" alt="editGoals" width="300">
+      <img src="https://user-images.githubusercontent.com/103979716/206076517-a7594d4d-c836-4e55-abfa-dea379a65995.png" alt="editGoals" width="400">
     </td>
     <td>
       <b>Edit:</b>  Editing transactions is just as easy as adding them.
