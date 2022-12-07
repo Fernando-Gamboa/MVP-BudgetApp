@@ -41,7 +41,7 @@ A web app solution to help users set budgets and track expenses all in one place
   <img src="https://user-images.githubusercontent.com/103979716/206073550-240ff5c7-5502-4980-a99a-baeb2d21e9cc.png" alt="login page" width="700">
 </div>
 <br></br>
-Users can login or create a new user account to start tracking and setting budget goals.
+Users can login or create a new user account using Firebase Authentication, allowing for personal information to stay private all while safely tracking and setting budget goals.
 <br></br>
 <table>
   <tr>
@@ -49,7 +49,7 @@ Users can login or create a new user account to start tracking and setting budge
       <img src="https://user-images.githubusercontent.com/103979716/206073641-217d45ed-973e-47ec-ac64-a6eb6c06a151.png" alt="signup page" width="300">
     </td>
     <td>
-      <b>Sign up:</b>  Easily create a new account with just a few clicks.
+      <b>Sign up:</b>  Easily create a new account with just a few clicks using Firebase.
     </td>
   </tr>
   <tr>
